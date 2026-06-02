@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Watcher — Detailed technical specs, custom flight controller architecture, and development roadmap for our autonomous drone project.">
+  <title>Technology | The Watcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+<div class="glow-dot"></div>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="./index.html" class="logo">
+      <div class="logo-mark">◈</div>
+      The Watcher
+    </a>
+    <ul class="nav-links">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./tech.html" class="active">Technology</a></li>
+      <li><a href="./gallery.html">Gallery</a></li>
+      <li><a href="./contact.html">About</a></li>
+    </ul>
+    <a href="./index.html#kickstarter" class="btn-ks">▲ Back on Kickstarter</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <p class="page-hero-label">Technology</p>
+  <h1>The Engineering Behind<br>The Watcher</h1>
+  <p>A full breakdown of the hardware, firmware, and systems that power our autonomous drone platform.</p>
+</div>
+
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 6rem;">
+
+  <!-- ── Specs ── -->
+  <span class="section-label">Specifications</span>
+  <h2 class="section-title">Hardware Overview</h2>
+
+  <div class="spec-card" style="margin-top: 1.5rem;">
+    <div class="spec-card-header">📐 Physical &amp; Flight</div>
+    <table class="spec-table">
+      <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Frame Size</td><td>250mm diagonal</td></tr>
+        <tr><td>Total Weight (no payload)</td><td>~420 g</td></tr>
+        <tr><td>Max Takeoff Weight</td><td>650 g</td></tr>
+        <tr><td>Propellers</td><td>5-inch, 3-blade</td></tr>
+        <tr><td>Motors</td><td>Brushless 2306 — 2400 KV</td></tr>
+        <tr><td>Battery</td><td>4S 1800 mAh LiPo</td></tr>
+        <tr><td>Estimated Flight Time</td><td>12 – 18 min (mission dependent)</td></tr>
+        <tr><td>Max Operational Range</td><td>~800 m (with telemetry link)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="spec-card" style="margin-top: 1.5rem;">
+    <div class="spec-card-header">💻 Electronics &amp; Compute</div>
+    <table class="spec-table">
+      <thead><tr><th>Component</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td>Flight Controller MCU</td><td>STM32F4 series (custom PCB)</td></tr>
+        <tr><td>IMU</td><td>MPU-6000 — 6-axis gyro/accelerometer</td></tr>
+        <tr><td>GPS Module</td><td>u-blox M8N — 10 Hz update rate</td></tr>
+        <tr><td>ESCs</td><td>BLHeli-S 30A (4-in-1 stack)</td></tr>
+        <tr><td>Telemetry Link</td><td>433 MHz LoRa — custom binary protocol</td></tr>
+        <tr><td>Companion Computer</td><td>Raspberry Pi Zero 2W</td></tr>
+        <tr><td>Camera (CV module)</td><td>OV5647 5MP — 1080p @ 30fps</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── Flight Controller ── -->
+  <div style="margin-top: 4.5rem;">
+    <span class="section-label">Core System</span>
+    <h2 class="section-title">Custom Flight Controller</h2>
+    <p class="section-sub">The heart of The Watcher — purpose-built hardware and firmware that give us full control over every aspect of flight behavior.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">⚙️</span>
+        <h3>Full PID Control</h3>
+        <p>Custom PID loops tuned for The Watcher's exact airframe. Rate mode, angle mode, and GPS position hold — each flight mode written and optimized by hand.</p>
+        <span class="feature-badge badge-active">Implemented</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📡</span>
+        <h3>Custom Telemetry</h3>
+        <p>Binary telemetry over 433 MHz LoRa: real-time attitude, GPS position, battery state, and mission status transmitted at 10 Hz to the ground station.</p>
+        <span class="feature-badge badge-active">Implemented</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🛡️</span>
+        <h3>Safety Systems</h3>
+        <p>Watchdog timers, link-loss failsafe with return-to-home, low-battery failsafe, and geofence enforcement — all baked into the firmware, not bolted on.</p>
+        <span class="feature-badge badge-active">Implemented</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Progress ── -->
+  <div style="margin-top: 4.5rem;">
+    <span class="section-label">Development Progress</span>
+    <h2 class="section-title">System Completion</h2>
+
+    <div class="progress-items" style="margin-top: 2rem; max-width: 680px;">
+      <div class="progress-item">
+        <div class="label"><span>Frame Design &amp; Assembly</span><span>100%</span></div>
+        <div class="progress-bar"><div class="progress-fill" data-width="100%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="label"><span>Custom Flight Controller PCB</span><span>85%</span></div>
+        <div class="progress-bar"><div class="progress-fill" data-width="85%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="label"><span>Stabilization Firmware (PID)</span><span>90%</span></div>
+        <div class="progress-bar"><div class="progress-fill" data-width="90%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="label"><span>Autonomous Mission Logic</span><span>55%</span></div>
+        <div class="progress-bar"><div class="progress-fill" data-width="55%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="label"><span>Ground Control Station</span><span>35%</span></div>
+        <div class="progress-bar"><div class="progress-fill" data-width="35%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="label"><span>Computer Vision Module (with funding)</span><span>10%</span></div>
+        <div class="progress-bar"><div class="progress-fill" data-width="10%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Roadmap ── -->
+  <div style="margin-top: 4.5rem;">
+    <span class="section-label">Roadmap</span>
+    <h2 class="section-title">Development Phases</h2>
+
+    <div class="roadmap">
+      <div class="roadmap-item done">
+        <span class="roadmap-phase phase-done">✓ Complete</span>
+        <h4>Phase 1 — Frame &amp; Electronics</h4>
+        <p>Custom airframe design, motor and ESC selection, initial PCB layout and assembly for the flight controller board.</p>
+      </div>
+      <div class="roadmap-item done">
+        <span class="roadmap-phase phase-done">✓ Complete</span>
+        <h4>Phase 2 — Stabilization Firmware</h4>
+        <p>PID control loops from scratch, IMU sensor fusion, manual flight testing, and complete safety failsafe logic.</p>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-phase phase-current">● In Progress</span>
+        <h4>Phase 3 — Autonomous Navigation</h4>
+        <p>GPS waypoint missions, altitude hold, return-to-home, and companion computer integration for higher-level mission planning.</p>
+      </div>
+      <div class="roadmap-item planned">
+        <span class="roadmap-phase phase-planned">○ Planned</span>
+        <h4>Phase 4 — Ground Control Station</h4>
+        <p>Real-time telemetry dashboard, visual mission planning interface, geofence editor, and flight replay analysis.</p>
+      </div>
+      <div class="roadmap-item planned">
+        <span class="roadmap-phase phase-planned">○ With Funding</span>
+        <h4>Phase 5 — Computer Vision</h4>
+        <p>Onboard obstacle detection, visual target tracking, and autonomous landing zone recognition using the onboard camera and Raspberry Pi.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── CTA ── -->
+<section class="cta-banner">
+  <span class="section-label">Support the Project</span>
+  <h2 class="section-title">Unlock Phase 5.</h2>
+  <p class="section-sub" style="margin: 0 auto 2.5rem;">Back The Watcher on Kickstarter to fund the computer vision module — turning this drone into a truly intelligent autonomous system.</p>
+  <a href="./index.html#kickstarter" class="btn-primary">▲ Back on Kickstarter →</a>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">◈ The Watcher</div>
+    <ul class="footer-links">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./tech.html">Technology</a></li>
+      <li><a href="./gallery.html">Gallery</a></li>
+      <li><a href="./contact.html">About</a></li>
+    </ul>
+    <p>Built by <strong>simPly-invent</strong> &nbsp;·&nbsp; Autonomous Drone Project &nbsp;·&nbsp; 2025</p>
+  </div>
+</footer>
+
+<script src="./assets/js/main.js"></script>
+</body>
+</html>
