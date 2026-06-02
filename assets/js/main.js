@@ -6,8 +6,8 @@
   if (navbar) {
     window.addEventListener('scroll', () => {
       navbar.style.background = window.scrollY > 60
-        ? 'rgba(5, 5, 8, 0.98)'
-        : 'rgba(5, 5, 8, 0.85)';
+        ? 'rgba(13, 13, 13, 0.98)'
+        : 'rgba(13, 13, 13, 0.92)';
     });
   }
 
