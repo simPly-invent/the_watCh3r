@@ -5,7 +5,7 @@
 
   /* ── Scene & Camera ── */
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x050508, 0.12);
+  scene.fog = new THREE.FogExp2(0x0d0d0d, 0.11);
 
   const camera = new THREE.PerspectiveCamera(58, 1, 0.1, 100);
   camera.position.set(0, 1.4, 4.8);
@@ -28,28 +28,28 @@
   window.addEventListener('resize', resize);
 
   /* ── Lighting ── */
-  scene.add(new THREE.AmbientLight(0x0d1a33, 3));
+  scene.add(new THREE.AmbientLight(0x111111, 4));
 
-  const keyLight = new THREE.DirectionalLight(0x00d4ff, 4);
+  const keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
   keyLight.position.set(3, 4, 2);
   keyLight.castShadow = true;
   scene.add(keyLight);
 
-  const fillLight = new THREE.PointLight(0x8b5cf6, 5, 10);
+  const fillLight = new THREE.PointLight(0x888888, 3, 10);
   fillLight.position.set(-3, 0.5, -1);
   scene.add(fillLight);
 
-  const rimLight = new THREE.PointLight(0x00d4ff, 2, 6);
+  const rimLight = new THREE.PointLight(0xffffff, 1.2, 6);
   rimLight.position.set(0, -1.5, 2);
   scene.add(rimLight);
 
   /* ── Materials ── */
-  const matBody = new THREE.MeshPhongMaterial({ color: 0x12121e, shininess: 90, specular: 0x00d4ff });
-  const matArm  = new THREE.MeshPhongMaterial({ color: 0x1a1a2e, shininess: 60 });
-  const matAccent = new THREE.MeshPhongMaterial({ color: 0x00d4ff, emissive: 0x002233, shininess: 220 });
-  const matDark = new THREE.MeshPhongMaterial({ color: 0x0a0a18, shininess: 30 });
-  const matLedG = new THREE.MeshBasicMaterial({ color: 0x00ff88 });
-  const matLedR = new THREE.MeshBasicMaterial({ color: 0xff3333 });
+  const matBody   = new THREE.MeshPhongMaterial({ color: 0x141414, shininess: 80, specular: 0x666666 });
+  const matArm    = new THREE.MeshPhongMaterial({ color: 0x1c1c1c, shininess: 40 });
+  const matAccent = new THREE.MeshPhongMaterial({ color: 0x555555, emissive: 0x111111, shininess: 140 });
+  const matDark   = new THREE.MeshPhongMaterial({ color: 0x0e0e0e, shininess: 20 });
+  const matLedG   = new THREE.MeshBasicMaterial({ color: 0x3ecf8e });
+  const matLedR   = new THREE.MeshBasicMaterial({ color: 0x888888 });
 
   /* ── Drone Group ── */
   const drone = new THREE.Group();
@@ -73,17 +73,17 @@
   dome.castShadow = true;
   drone.add(dome);
 
-  /* Body edge glow lines */
+  /* Body edge lines — very subtle */
   const bodyEdges = new THREE.LineSegments(
     new THREE.EdgesGeometry(new THREE.BoxGeometry(0.55, 0.1, 0.38)),
-    new THREE.LineBasicMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.25 })
+    new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.06 })
   );
   drone.add(bodyEdges);
 
   /* Antenna */
   const ant = new THREE.Mesh(
     new THREE.CylinderGeometry(0.005, 0.005, 0.22, 6),
-    new THREE.MeshPhongMaterial({ color: 0x666688 })
+    new THREE.MeshPhongMaterial({ color: 0x444444 })
   );
   ant.position.set(-0.18, 0.175, 0.1);
   ant.rotation.z = 0.18;
@@ -97,7 +97,6 @@
     const armGroup = new THREE.Group();
     armGroup.rotation.y = angle;
 
-    /* Arm beam — offset so it starts at drone center and extends outward */
     const beam = new THREE.Mesh(
       new THREE.BoxGeometry(ARM_LENGTH, 0.04, 0.04),
       i < 2 ? matArm : matDark
@@ -106,7 +105,6 @@
     beam.castShadow = true;
     armGroup.add(beam);
 
-    /* Motor mount at arm tip */
     const mount = new THREE.Mesh(
       new THREE.CylinderGeometry(0.065, 0.07, 0.07, 12),
       matAccent
@@ -114,23 +112,21 @@
     mount.position.x = ARM_LENGTH;
     armGroup.add(mount);
 
-    /* Rotor group (spinning) */
     const rg = new THREE.Group();
     rg.position.x = ARM_LENGTH;
     rg.position.y = 0.045;
 
     const blade1 = new THREE.Mesh(
       new THREE.BoxGeometry(0.3, 0.007, 0.038),
-      new THREE.MeshPhongMaterial({ color: 0x2a3a4a, transparent: true, opacity: 0.7 })
+      new THREE.MeshPhongMaterial({ color: 0x1e1e1e, transparent: true, opacity: 0.75 })
     );
     const blade2 = blade1.clone();
     blade2.rotation.y = Math.PI / 2;
     rg.add(blade1, blade2);
 
-    /* Rotor ring */
     const ring = new THREE.Mesh(
       new THREE.TorusGeometry(0.16, 0.013, 8, 32),
-      new THREE.MeshPhongMaterial({ color: 0x00d4ff, emissive: 0x001122, transparent: true, opacity: 0.65 })
+      new THREE.MeshPhongMaterial({ color: 0x444444, transparent: true, opacity: 0.5 })
     );
     ring.rotation.x = Math.PI / 2;
     rg.add(ring);
@@ -138,7 +134,6 @@
     armGroup.add(rg);
     rotorGroups.push(rg);
 
-    /* LED at tip */
     const led = new THREE.Mesh(new THREE.SphereGeometry(0.02, 8, 8), i < 2 ? matLedG : matLedR);
     led.position.set(ARM_LENGTH, -0.025, 0);
     armGroup.add(led);
@@ -149,15 +144,15 @@
   drone.position.y = 0;
   scene.add(drone);
 
-  /* ── Grid floor ── */
-  const grid = new THREE.GridHelper(12, 24, 0x00d4ff, 0x0d1a33);
+  /* ── Grid floor — very subtle ── */
+  const grid = new THREE.GridHelper(12, 24, 0x222222, 0x181818);
   grid.position.y = -2.2;
-  grid.material.opacity = 0.25;
+  grid.material.opacity = 0.3;
   grid.material.transparent = true;
   scene.add(grid);
 
-  /* ── Particle field (thrust effect) ── */
-  const PARTICLE_COUNT = 100;
+  /* ── Particle field ── */
+  const PARTICLE_COUNT = 80;
   const pPositions = new Float32Array(PARTICLE_COUNT * 3);
 
   for (let i = 0; i < PARTICLE_COUNT; i++) {
@@ -169,10 +164,10 @@
   const pGeo = new THREE.BufferGeometry();
   pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
   const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({
-    color: 0x00d4ff,
-    size: 0.025,
+    color: 0xffffff,
+    size: 0.02,
     transparent: true,
-    opacity: 0.35
+    opacity: 0.1
   }));
   drone.add(particles);
 
@@ -185,7 +180,6 @@
     mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
   });
 
-  /* ── Rotor direction per arm (alternating for realism) ── */
   const rotorDir = [1, -1, -1, 1];
 
   /* ── Animation loop ── */
@@ -195,28 +189,21 @@
     requestAnimationFrame(animate);
     t += 0.01;
 
-    /* Hover */
     drone.position.y = Math.sin(t * 0.75) * 0.14;
-
-    /* Gentle attitude shifts */
     drone.rotation.x = Math.sin(t * 0.48) * 0.05;
     drone.rotation.z = Math.cos(t * 0.61) * 0.04;
 
-    /* Mouse parallax — smooth follow */
     targetX += (mouseX * 0.55 - targetX) * 0.04;
     targetZ += (mouseY * 0.28 - targetZ) * 0.04;
     drone.rotation.y = targetX;
     drone.rotation.x += targetZ * 0.12;
 
-    /* Auto slow spin when no mouse */
     if (Math.abs(mouseX) < 0.02) drone.rotation.y += 0.004;
 
-    /* Spin rotors */
     rotorGroups.forEach((rg, i) => {
       rg.rotation.y += 0.38 * rotorDir[i];
     });
 
-    /* Animate particles downward (thrust) */
     const pos = pGeo.attributes.position.array;
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       pos[i * 3 + 1] -= 0.009;
@@ -228,7 +215,6 @@
     }
     pGeo.attributes.position.needsUpdate = true;
 
-    /* Orbit fill light for dynamic shading */
     fillLight.position.x = Math.sin(t * 0.6) * 4;
     fillLight.position.z = Math.cos(t * 0.6) * 4;
 
