@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Watcher — An autonomous drone built from the ground up. Custom flight controller, intelligent navigation, and a mission to push autonomous aerial systems further. Now on Kickstarter.">
+  <meta property="og:title" content="The Watcher | Autonomous Drone Project">
+  <meta property="og:description" content="Custom flight controller. Autonomous navigation. Computer vision. Launching on Kickstarter.">
+  <meta property="og:type" content="website">
+  <title>The Watcher | Autonomous Drone Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+<div class="glow-dot"></div>
+
+<!-- ── Navbar ── -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="./index.html" class="logo">
+      <div class="logo-mark">◈</div>
+      The Watcher
+    </a>
+    <ul class="nav-links">
+      <li><a href="./index.html" class="active">Home</a></li>
+      <li><a href="./tech.html">Technology</a></li>
+      <li><a href="./gallery.html">Gallery</a></li>
+      <li><a href="./contact.html">About</a></li>
+    </ul>
+    <a href="#kickstarter" class="btn-ks">▲ Back on Kickstarter</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <canvas id="drone-canvas" aria-hidden="true"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      Now on Kickstarter
+    </div>
+    <h1>Autonomous Flight,<br><span class="accent">Redefined.</span></h1>
+    <p>The Watcher is a drone built from scratch — custom flight controller, intelligent navigation, and a mission to push the limits of what an independent aerial system can do.</p>
+    <div class="hero-cta">
+      <a href="#kickstarter" class="btn-primary">▲ Back on Kickstarter</a>
+      <a href="./tech.html" class="btn-secondary">Explore the Tech →</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ── Core Features ── -->
+<section style="background: var(--bg2); border-top: 1px solid var(--card-border); padding: 5.5rem 2rem;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <span class="section-label">Core Capabilities</span>
+    <h2 class="section-title">Built different, by design.</h2>
+    <p class="section-sub">Every component was chosen and engineered for a reason — no off-the-shelf shortcuts where it counts.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🛩️</span>
+        <h3>Custom Flight Controller</h3>
+        <p>Proprietary firmware on a purpose-built board. Full PID control, sensor fusion, telemetry logging, and safety failsafes — all written from scratch.</p>
+        <span class="feature-badge badge-active">Active Development</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🧭</span>
+        <h3>Autonomous Navigation</h3>
+        <p>GPS-guided waypoint missions, altitude hold, and return-to-home. The Watcher flies its mission — without hands on the sticks.</p>
+        <span class="feature-badge badge-active">Active Development</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">👁️</span>
+        <h3>Computer Vision Module</h3>
+        <p>With your support, The Watcher gets eyes — onboard vision for obstacle detection, target tracking, and autonomous landing zone recognition.</p>
+        <span class="feature-badge badge-funded">Unlocked with Funding</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Development Progress ── -->
+<div class="progress-block">
+  <div class="inner">
+    <div>
+      <span class="section-label">Development Status</span>
+      <h2 class="section-title">Where we are today.</h2>
+      <p class="section-sub">Built over months of iteration, The Watcher is progressing steadily toward a fully autonomous prototype.</p>
+      <a href="./tech.html" class="btn-secondary" style="display: inline-flex;">Full roadmap →</a>
+    </div>
+    <div class="progress-items">
+      <div class="progress-item">
+        <div class="label"><span>Frame &amp; Hardware Design</span><span>100%</span></div>
+        <div class="progress-bar"><div class="progress-fill" data-width="100%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="label"><span>Flight Controller Firmware</span><span>85%</span></div>
+        <div class="progress-bar"><div class="progress-fill" data-width="85%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="label"><span>Autonomous Navigation</span><span>55%</span></div>
+        <div class="progress-bar"><div class="progress-fill" data-width="55%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="label"><span>Computer Vision (with funding)</span><span>10%</span></div>
+        <div class="progress-bar"><div class="progress-fill" data-width="10%"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Stats ── -->
+<section style="padding: 5.5rem 2rem;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <span class="section-label">By the Numbers</span>
+    <h2 class="section-title">Progress in numbers.</h2>
+    <div class="stats-grid">
+      <div class="stat-card"><span class="value">6+</span><span class="label">Months of Development</span></div>
+      <div class="stat-card"><span class="value">100%</span><span class="label">Custom Firmware</span></div>
+      <div class="stat-card"><span class="value">3</span><span class="label">Prototypes Built</span></div>
+      <div class="stat-card"><span class="value">∞</span><span class="label">Coffee Consumed</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Kickstarter CTA ── -->
+<section id="kickstarter" class="cta-banner">
+  <span class="section-label">Kickstarter Campaign</span>
+  <h2 class="section-title">Help us take flight.</h2>
+  <p class="section-sub" style="margin: 0 auto 2.5rem;">Every backer brings The Watcher closer to its first fully autonomous mission. Join the build.</p>
+  <!-- Replace the href below with your actual Kickstarter campaign URL -->
+  <a href="#" class="btn-primary" style="font-size: 1rem; padding: 1rem 2.5rem;">▲ Back The Watcher on Kickstarter</a>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">◈ The Watcher</div>
+    <ul class="footer-links">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./tech.html">Technology</a></li>
+      <li><a href="./gallery.html">Gallery</a></li>
+      <li><a href="./contact.html">About</a></li>
+    </ul>
+    <p>Built by <strong>simPly-invent</strong> &nbsp;·&nbsp; Autonomous Drone Project &nbsp;·&nbsp; 2025</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="./assets/js/drone-scene.js"></script>
+<script src="./assets/js/main.js"></script>
+</body>
+</html>

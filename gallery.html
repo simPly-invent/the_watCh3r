@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Watcher — Build progress photos, prototype images and development timeline of our autonomous drone project.">
+  <title>Gallery | The Watcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+<div class="glow-dot"></div>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="./index.html" class="logo">
+      <div class="logo-mark">◈</div>
+      The Watcher
+    </a>
+    <ul class="nav-links">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./tech.html">Technology</a></li>
+      <li><a href="./gallery.html" class="active">Gallery</a></li>
+      <li><a href="./contact.html">About</a></li>
+    </ul>
+    <a href="./index.html#kickstarter" class="btn-ks">▲ Back on Kickstarter</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <p class="page-hero-label">Gallery</p>
+  <h1>Build Progress &amp;<br>Development Photos</h1>
+  <p>A visual journey through the making of The Watcher — from raw parts to flying prototype.</p>
+</div>
+
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 6rem;">
+
+  <span class="section-label">Photos</span>
+  <h2 class="section-title">Prototype Gallery</h2>
+  <p class="section-sub">Real images from the workshop — hardware, testing, and iteration in progress.</p>
+
+  <!--
+    HOW TO ADD YOUR PHOTOS:
+    1. Place your images in assets/img/ named photo-1.jpg through photo-6.jpg
+    2. Replace the .gallery-ph placeholder div inside each .gallery-item with:
+       <img src="./assets/img/photo-X.jpg" alt="Your description">
+    3. The .gallery-overlay label will appear on hover automatically.
+  -->
+  <div class="gallery-grid">
+
+    <div class="gallery-item">
+      <!-- Replace below with: <img src="./assets/img/photo-1.jpg" alt="Frame Assembly"> -->
+      <div class="gallery-ph">
+        <span class="ph-icon">📷</span>
+        <strong>Frame Assembly</strong>
+        <small>→ assets/img/photo-1.jpg</small>
+      </div>
+      <div class="gallery-overlay"><span>Frame Assembly</span></div>
+    </div>
+
+    <div class="gallery-item">
+      <!-- Replace below with: <img src="./assets/img/photo-2.jpg" alt="Electronics Layout"> -->
+      <div class="gallery-ph">
+        <span class="ph-icon">📷</span>
+        <strong>Electronics Layout</strong>
+        <small>→ assets/img/photo-2.jpg</small>
+      </div>
+      <div class="gallery-overlay"><span>Electronics Layout</span></div>
+    </div>
+
+    <div class="gallery-item">
+      <!-- Replace below with: <img src="./assets/img/photo-3.jpg" alt="Flight Controller PCB"> -->
+      <div class="gallery-ph">
+        <span class="ph-icon">📷</span>
+        <strong>Flight Controller PCB</strong>
+        <small>→ assets/img/photo-3.jpg</small>
+      </div>
+      <div class="gallery-overlay"><span>Flight Controller PCB</span></div>
+    </div>
+
+    <div class="gallery-item">
+      <!-- Replace below with: <img src="./assets/img/photo-4.jpg" alt="First Hover Test"> -->
+      <div class="gallery-ph">
+        <span class="ph-icon">📷</span>
+        <strong>First Hover Test</strong>
+        <small>→ assets/img/photo-4.jpg</small>
+      </div>
+      <div class="gallery-overlay"><span>First Hover Test</span></div>
+    </div>
+
+    <div class="gallery-item">
+      <!-- Replace below with: <img src="./assets/img/photo-5.jpg" alt="Outdoor Test Flight"> -->
+      <div class="gallery-ph">
+        <span class="ph-icon">📷</span>
+        <strong>Outdoor Test Flight</strong>
+        <small>→ assets/img/photo-5.jpg</small>
+      </div>
+      <div class="gallery-overlay"><span>Outdoor Test Flight</span></div>
+    </div>
+
+    <div class="gallery-item">
+      <!-- Replace below with: <img src="./assets/img/photo-6.jpg" alt="Ground Station"> -->
+      <div class="gallery-ph">
+        <span class="ph-icon">📷</span>
+        <strong>Ground Station Setup</strong>
+        <small>→ assets/img/photo-6.jpg</small>
+      </div>
+      <div class="gallery-overlay"><span>Ground Station Setup</span></div>
+    </div>
+
+  </div>
+
+  <!-- How-to tip -->
+  <div class="gallery-tip">
+    <span style="font-size: 1.4rem;">💡</span>
+    <span>
+      <strong>Add your photos:</strong> Drop your prototype images into <code>assets/img/</code>
+      named <code>photo-1.jpg</code> to <code>photo-6.jpg</code> and replace the placeholder divs with
+      <code>&lt;img&gt;</code> tags as shown in the HTML comments above.
+    </span>
+  </div>
+
+  <!-- ── Build Timeline ── -->
+  <span class="section-label">Build Log</span>
+  <h2 class="section-title">Development Timeline</h2>
+
+  <div class="timeline" style="margin-top: 2rem; max-width: 680px;">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Phase 1 · Early Build</div>
+      <h4>Frame Design &amp; First Prototype</h4>
+      <p>First iteration of the 250mm frame. Motor and ESC selection, initial wiring harness built and tested on the bench. ESC calibration and motor direction verified.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Phase 2 · Firmware</div>
+      <h4>Custom Flight Controller Goes Live</h4>
+      <p>First stable hover on custom PID firmware. Hundreds of tuning iterations in simulation before first real flights. Safety failsafes integrated and tested.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Phase 3 · Autonomy</div>
+      <h4>First Autonomous Waypoint Mission</h4>
+      <p>GPS integration goes live. The Watcher completes its first fully autonomous waypoint mission — navigates, holds position, and returns home without pilot input.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background: var(--bg); border: 2px solid var(--accent2); box-shadow: 0 0 10px rgba(139,92,246,0.3);"></div>
+      <div class="timeline-date" style="color: var(--accent2);">Phase 4 · Coming Soon</div>
+      <h4>Ground Control Station</h4>
+      <p>Real-time mission planning dashboard. Live telemetry, geofence editing, and mission replay. Currently in active development.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background: var(--bg); border: 2px solid rgba(5,206,120,0.5); box-shadow: none;"></div>
+      <div class="timeline-date" style="color: var(--ks);">Phase 5 · With Funding</div>
+      <h4>Computer Vision Module</h4>
+      <p>Onboard obstacle detection, visual tracking, and autonomous landing. This is what your Kickstarter backing unlocks.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">◈ The Watcher</div>
+    <ul class="footer-links">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./tech.html">Technology</a></li>
+      <li><a href="./gallery.html">Gallery</a></li>
+      <li><a href="./contact.html">About</a></li>
+    </ul>
+    <p>Built by <strong>simPly-invent</strong> &nbsp;·&nbsp; Autonomous Drone Project &nbsp;·&nbsp; 2025</p>
+  </div>
+</footer>
+
+<script src="./assets/js/main.js"></script>
+</body>
+</html>
