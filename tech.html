@@ -50,8 +50,9 @@
         <tr><td>Total Weight (no payload)</td><td>~420 g</td></tr>
         <tr><td>Max Takeoff Weight</td><td>650 g</td></tr>
         <tr><td>Propellers</td><td>5-inch, 3-blade</td></tr>
-        <tr><td>Motors</td><td>Brushless 2306 — 2400 KV</td></tr>
-        <tr><td>Battery</td><td>4S 1800 mAh LiPo</td></tr>
+        <tr><td>Frame Material</td><td>Carbon fiber</td></tr>
+        <tr><td>Motors</td><td>AxisFlying AE2207 V2 — 6S</td></tr>
+        <tr><td>Battery</td><td>ManiaX 6S 1800mAh LiPo — 150C XT60</td></tr>
         <tr><td>Estimated Flight Time</td><td>12 – 18 min (mission dependent)</td></tr>
         <tr><td>Max Operational Range</td><td>~800 m (with telemetry link)</td></tr>
       </tbody>
@@ -63,15 +64,25 @@
     <table class="spec-table">
       <thead><tr><th>Component</th><th>Details</th></tr></thead>
       <tbody>
-        <tr><td>Flight Controller MCU</td><td>STM32F4 series (custom PCB)</td></tr>
+        <tr><td>Flight Controller</td><td>SpeedBee F450 V3 Stack (FC + 4-in-1 ESC)</td></tr>
         <tr><td>IMU</td><td>MPU-6000 — 6-axis gyro/accelerometer</td></tr>
-        <tr><td>GPS Module</td><td>u-blox M8N — 10 Hz update rate</td></tr>
-        <tr><td>ESCs</td><td>BLHeli-S 30A (4-in-1 stack)</td></tr>
+        <tr><td>GPS Module</td><td>GEPRC M10 — u-blox, 32 satellites</td></tr>
+        <tr><td>ESCs</td><td>SpeedBee F450 V3 4-in-1 — 6S compatible</td></tr>
         <tr><td>Telemetry Link</td><td>433 MHz LoRa — custom binary protocol</td></tr>
-        <tr><td>Companion Computer</td><td>Raspberry Pi Zero 2W</td></tr>
+        <tr><td>Companion Computer</td><td>Raspberry Pi Zero W</td></tr>
         <tr><td>Camera (CV module)</td><td>OV5647 5MP — 1080p @ 30fps</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- ── Architecture Diagram ── -->
+  <div style="margin-top: 3.5rem;">
+    <span class="section-label">System Architecture</span>
+    <h2 class="section-title">How it all connects.</h2>
+    <p class="section-sub">Schéma complet des connexions hardware — du contrôleur de vol au Raspberry Pi, en passant par les ESC, moteurs, GPS et batterie.</p>
+    <div style="margin-top: 2rem; overflow-x: auto; background: #fff; border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem;">
+      <img src="./drone_architecture.svg" alt="Drone system architecture diagram" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+    </div>
   </div>
 
   <!-- ── Flight Controller ── -->
