@@ -1,0 +1,17 @@
+Hey everyone, my name is Djalil, and I'm a computer science student at 42 School.
+Today I want to share a project I've been working on — an autonomous surveillance drone system, designed to protect your home while you're away.
+The idea came from my own family. 
+My parents wanted a way to secure their house during vacations, without relying on expensive security services. 
+So I decided to build a solution myself.
+The drone runs on a multi-layer system — motors, ESCs, a flight controller, a Raspberry Pi, and an ELRS receiver — all working together to fly and monitor autonomously.
+But here's what makes it different. I'm building a charging base for two drones, so they can alternate surveillance shifts automatically. 
+That means your home is protected 24 hours a day, 7 days a week — with zero human intervention.
+To keep costs low and stay eco-friendly, I'm reusing materials wherever I can — including copper wiring.
+I've already designed the full architecture. I've already invested my time and my skills. 
+The only thing standing between me and a working prototype is 500 euros — the exact cost of the remaining components I need.
+That's it. Not millions. Just 500 euros to finish what I started.
+And to thank everyone who believes in this project, I'm offering rewards — from exclusive updates and full architecture schematics, to a fully assembled drone for the biggest supporters.
+One last thing — if for any reason I can't finish this project, every single contributor will be fully refunded. 
+No questions asked. Your trust means everything to me.
+This is a small step. But I believe it's the start of something much bigger.
+Thank you.
