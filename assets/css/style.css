@@ -226,6 +226,12 @@ code {
   animation: pulse-dot 2.5s ease-in-out infinite;
 }
 
+
+#photo_helice{
+  margin-left: 15cm;
+}
+
+
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.25; }
