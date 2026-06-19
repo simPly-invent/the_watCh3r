@@ -45,12 +45,12 @@
   <text x="425" y="305" text-anchor="middle" font-size="10" fill="#993C1D">UART1</text>
 
   <!-- ===== FLIGHT CONTROLLER ===== -->
-  <rect x="460" y="260" width="160" height="80" rx="10" fill="#FAECE7" stroke="#993C1D" stroke-width="1.5"/>
+  <rect x="460" y="260" width="160" height="90" rx="10" fill="#FAECE7" stroke="#993C1D" stroke-width="1.5"/>
   <text x="540" y="284" text-anchor="middle" font-size="13" font-weight="600" fill="#712B13">Flight Controller</text>
   <text x="540" y="300" text-anchor="middle" font-size="11" fill="#993C1D">SpeedBee F450 V3</text>
   <text x="540" y="316" text-anchor="middle" font-size="11" fill="#993C1D">ArduPilot / Betaflight</text>
-  <text x="540" y="331" text-anchor="middle" font-size="11" fill="#993C1D">4V5 · GND · T2 · R2</text>
-
+  <text x="540" y="331" text-anchor="middle" font-size="11" fill="#993C1D">Elrs : 4V5 · GND · T6 · R6</text>
+  <text x="540" y="346" text-anchor="middle" font-size="11" fill="#993C1D">Pie  : 4V5 · GND · T2 · R2</text>
   <!-- ELRS → FC arrow (top connection) -->
   <line x1="390" y1="130" x2="540" y2="130" stroke="#378ADD" stroke-width="1" stroke-dasharray="4,3"/>
   <line x1="540" y1="130" x2="540" y2="260" stroke="#378ADD" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
