@@ -227,13 +227,6 @@ code {
 }
 
 
-/* #photo_helice{
-  width: 400px;
-  height: 300px;
-  margin: -75px 0 0 -100px;
-} */
-
-
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.25; }
