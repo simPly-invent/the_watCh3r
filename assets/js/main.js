@@ -18,9 +18,9 @@
     menu.className = 'mobile-menu';
     menu.innerHTML = `
       <a href="./index.html">Home</a>
-      <a href="./tech.html">Technology</a>
-      <a href="./gallery.html">Gallery</a>
-      <a href="./contact.html">About</a>
+      <a href="./html/tech.html">Technology</a>
+      <a href="./html/gallery.html">Gallery</a>
+      <a href="./html/contact.html">About</a>
       <a href="#kickstarter" class="btn-ks">▲ Back on Kickstarter</a>
     `;
     document.body.appendChild(menu);
