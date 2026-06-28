@@ -78,6 +78,11 @@ code {
   white-space: nowrap;
 }
 
+.logo-img {
+  height: 1em;
+  width: auto;
+}
+
 .logo-mark {
   width: 26px; height: 26px;
   border: 1.5px solid rgba(255, 255, 255, 0.2);
