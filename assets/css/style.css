@@ -919,6 +919,226 @@ footer {
 
 footer p { color: rgba(255, 255, 255, 0.18); font-size: 0.79rem; }
 
+/* ========== REWARDS ========== */
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1px;
+  background: var(--card-border);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.reward-card {
+  background: var(--bg);
+  padding: 2rem 1.75rem;
+  transition: background 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.reward-card.featured { background: rgba(5, 206, 120, 0.025); }
+.reward-card:hover { background: rgba(255, 255, 255, 0.015); }
+.reward-card.featured:hover { background: rgba(5, 206, 120, 0.045); }
+
+.reward-tier {
+  font-size: 0.63rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-dim);
+  font-family: 'Courier New', monospace;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.reward-tier.ks { color: var(--ks); }
+
+.reward-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #e8e8e8;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.reward-name {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: #d0d0d0;
+  margin: 0.9rem 0 0.65rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.reward-card p {
+  color: var(--text-dim);
+  font-size: 0.84rem;
+  line-height: 1.8;
+  flex: 1;
+}
+
+.reward-limit {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  color: var(--ks);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ========== BUILT LIST ========== */
+.built-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.built-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.65rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  font-size: 0.84rem;
+  color: var(--text-dim);
+}
+
+.built-check {
+  color: var(--green);
+  font-size: 0.72rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.12rem;
+}
+
+/* ========== BUDGET ========== */
+.budget-list {
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 1.5rem;
+}
+
+.budget-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.72rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  font-size: 0.85rem;
+}
+
+.budget-row:last-child {
+  border-bottom: none;
+  background: rgba(255, 255, 255, 0.02);
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.budget-row span:first-child { color: var(--text-dim); }
+.budget-row span:last-child { color: var(--text); font-weight: 500; font-variant-numeric: tabular-nums; }
+.budget-row.budget-total span:first-child { color: var(--text); font-weight: 600; }
+.budget-row.budget-total span:last-child { color: var(--ks); font-weight: 700; font-size: 0.95rem; }
+
+/* ========== RISK CARDS ========== */
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.risk-card {
+  background: var(--bg2);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.risk-card h4 {
+  font-size: 0.87rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #c0c0c0;
+}
+
+.risk-card p {
+  color: var(--text-dim);
+  font-size: 0.83rem;
+  line-height: 1.8;
+}
+
+/* ========== SUPPORTERS ========== */
+.supporters-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  list-style: none;
+}
+
+.supporters-tags li {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--card-border);
+  border-radius: 100px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.81rem;
+  color: var(--text-dim);
+}
+
+.supporters-empty {
+  color: var(--text-dim);
+  font-size: 0.84rem;
+  font-style: italic;
+  margin-top: 1rem;
+  opacity: 0.6;
+}
+
+/* ========== UPDATE ITEMS ========== */
+.update-tag {
+  display: inline-block;
+  background: rgba(62, 207, 142, 0.07);
+  color: var(--green);
+  border: 1px solid rgba(62, 207, 142, 0.14);
+  border-radius: 3px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.update-list {
+  list-style: none;
+  margin-top: 0.45rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.update-list li {
+  font-size: 0.83rem;
+  color: var(--text-dim);
+  padding-left: 1.1rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.update-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-dim);
+  opacity: 0.35;
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 900px) {
   .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -932,4 +1152,8 @@ footer p { color: rgba(255, 255, 255, 0.18); font-size: 0.79rem; }
   .features-grid { grid-template-columns: 1fr; }
   .section { padding: 4rem 1.5rem; }
   .cta-banner { padding: 5rem 1.5rem; }
+  .rewards-grid { grid-template-columns: 1fr; }
+  .built-list { grid-template-columns: 1fr; }
+  .risk-grid { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
 }
