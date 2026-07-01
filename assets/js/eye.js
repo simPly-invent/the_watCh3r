@@ -73,7 +73,6 @@
     overlay.style.transition = 'none';
     overlay.style.opacity    = '1';
     overlay.style.display    = 'flex';
-    overlay.style.pointerEvents = 'all';
 
     setTimeout(function () {
       // Ouvrir l'oeil (et le logo en sync)
@@ -82,7 +81,6 @@
 
       // Fade-out de l'overlay après l'animation
       setTimeout(function () {
-        overlay.style.pointerEvents = 'none';
         overlay.style.transition = 'opacity 0.7s ease';
         overlay.style.opacity = '0';
         setTimeout(function () { overlay.style.display = 'none'; }, 700);
