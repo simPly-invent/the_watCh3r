@@ -5,6 +5,7 @@
   var openGroup = document.getElementById('eye-open-group');
   var irisGroup = document.getElementById('overlay-iris-group');
   var logoGroup = document.getElementById('logo-open-group');
+  var eyeBgRect = document.querySelector('#overlay-eye rect');
 
   function easeOutCubic(t) {
     return 1 - Math.pow(1 - t, 3);
@@ -70,9 +71,11 @@
     }
     irisGroup.setAttribute('transform', 'translate(0,0)');
 
+    overlay.style.zIndex     = '9999';
     overlay.style.transition = 'none';
     overlay.style.opacity    = '1';
     overlay.style.display    = 'flex';
+    overlay.style.pointerEvents = 'all';
 
     setTimeout(function () {
       // Ouvrir l'oeil (et le logo en sync)
@@ -81,6 +84,7 @@
 
       // Fade-out de l'overlay après l'animation
       setTimeout(function () {
+        overlay.style.pointerEvents = 'none';
         overlay.style.transition = 'opacity 0.7s ease';
         overlay.style.opacity = '0';
         setTimeout(function () { overlay.style.display = 'none'; }, 700);
@@ -88,12 +92,17 @@
     }, 300);
   }
 
-  // REGARD (toutes les 20s) : overlay semi-transparent, oeil regarde G/D
+  // REGARD (toutes les 20s) : oeil flottant en arrière-plan, fond transparent
   function periodicLook() {
     openGroup.setAttribute('transform',
       'translate(100,100) scale(1,1) translate(-100,-100)');
     irisGroup.setAttribute('transform', 'translate(0,0)');
 
+    // Fond transparent : seul l'oeil SVG est visible, la page reste lisible
+    overlay.style.background    = 'transparent';
+    if (eyeBgRect) eyeBgRect.setAttribute('fill', 'transparent');
+
+    overlay.style.zIndex        = '9999';
     overlay.style.pointerEvents = 'none';
     overlay.style.transition    = 'none';
     overlay.style.opacity       = '0';
@@ -103,14 +112,18 @@
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
         overlay.style.transition = 'opacity 0.5s ease';
-        overlay.style.opacity    = '0.88';
+        overlay.style.opacity    = '0.55';
 
         setTimeout(function () {
           lookSequence(function () {
             setTimeout(function () {
               overlay.style.transition = 'opacity 0.7s ease';
               overlay.style.opacity    = '0';
-              setTimeout(function () { overlay.style.display = 'none'; }, 700);
+              setTimeout(function () {
+                overlay.style.display    = 'none';
+                overlay.style.background = '';
+                if (eyeBgRect) eyeBgRect.setAttribute('fill', '#ffffff00');
+              }, 700);
             }, 300);
           });
         }, 600);
@@ -119,6 +132,5 @@
   }
 
   intro();
-  setInterval(periodicLook, 20000);
 
 }());

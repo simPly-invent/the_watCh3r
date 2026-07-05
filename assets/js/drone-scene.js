@@ -2,6 +2,7 @@
 (function () {
   const canvas = document.getElementById('drone-canvas');
   if (!canvas || typeof THREE === 'undefined') return;
+  if (window.matchMedia('(max-width: 1100px)').matches) return;
 
   /* ── Scene & Camera ── */
   const scene = new THREE.Scene();
