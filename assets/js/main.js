@@ -11,18 +11,20 @@
     });
   }
 
-  /* ── Mobile menu ── */
+  /* ── Mobile menu ──
+     Built by cloning the real navbar links so hrefs stay correct
+     from any page depth (/index.html or /html/*.html). */
   const toggle = document.querySelector('.nav-toggle');
-  if (toggle) {
+  if (toggle && navbar) {
     const menu = document.createElement('div');
     menu.className = 'mobile-menu';
-    menu.innerHTML = `
-      <a href="./index.html">Home</a>
-      <a href="./html/tech.html">Technology</a>
-      <a href="./html/gallery.html">Gallery</a>
-      <a href="./html/contact.html">About</a>
-      <a href="#kickstarter" class="btn-ks">▲ Back on Kickstarter</a>
-    `;
+
+    navbar.querySelectorAll('.nav-links a').forEach(link => {
+      menu.appendChild(link.cloneNode(true));
+    });
+    const ks = navbar.querySelector('.btn-ks');
+    if (ks) menu.appendChild(ks.cloneNode(true));
+
     document.body.appendChild(menu);
 
     toggle.addEventListener('click', () => {
@@ -40,10 +42,9 @@
 
   /* ── Active nav link ── */
   const page = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    if (a.getAttribute('href') === './' + page || a.getAttribute('href') === page) {
-      a.classList.add('active');
-    }
+  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
+    const target = (a.getAttribute('href') || '').split('#')[0].split('/').pop();
+    if (target === page) a.classList.add('active');
   });
 
   /* ── Progress bars (animate on scroll into view) ── */
@@ -63,27 +64,36 @@
     fills.forEach(f => obs.observe(f));
   }
 
-  /* ── Glow dot follows cursor ── */
-  const glow = document.querySelector('.glow-dot');
-  if (glow) {
-    document.addEventListener('mousemove', (e) => {
-      glow.style.transform = `translate(${e.clientX - 350}px, ${e.clientY - 350}px)`;
-    });
-  }
+  /* ── Gallery lightbox ── */
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  if (galleryItems.length) {
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `
+      <button class="lightbox-close" aria-label="Close">✕</button>
+      <img alt="">
+      <figcaption></figcaption>
+    `;
+    document.body.appendChild(lightbox);
 
-  /* ── Contact form (mailto fallback + success feedback) ── */
-  const form = document.querySelector('.contact-form form');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      const btn = form.querySelector('.btn-submit');
-      btn.textContent = '✓ Sent!';
-      btn.style.background = '#00ff88';
-      btn.style.color = '#000';
-      setTimeout(() => {
-        btn.textContent = 'Send Message →';
-        btn.style.background = '';
-        btn.style.color = '';
-      }, 3500);
+    const lbImg = lightbox.querySelector('img');
+    const lbCaption = lightbox.querySelector('figcaption');
+
+    galleryItems.forEach(item => {
+      const img = item.querySelector('img');
+      if (!img) return;
+      item.addEventListener('click', () => {
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lbCaption.textContent =
+          (item.querySelector('.gallery-overlay span') || {}).textContent || img.alt;
+        lightbox.classList.add('open');
+      });
+    });
+
+    lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') lightbox.classList.remove('open');
     });
   }
 

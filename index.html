@@ -16,32 +16,15 @@
 </head>
 <body>
 
-<!-- ── Eye Overlay ── -->
-<div id="eye-overlay" aria-hidden="true">
-  <svg id="overlay-eye" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <g id="eye-open-group">
-      <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="white"/>
-      <g id="overlay-iris-group">
-        <circle cx="100" cy="100" r="44" fill="#000"/>
-        <circle cx="100" cy="100" r="19" fill="white"/>
-      </g>
-    </g>
-  </svg>
-</div>
-
 <!-- ── Navbar ── -->
 <nav class="navbar">
   <div class="nav-container">
     <a href="./index.html" class="logo">
-      <svg class="logo-img" id="logo-eye" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Watcher Logo">
+      <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Watcher Logo">
         <rect width="200" height="200" fill="#000"/>
-        <g id="logo-open-group">
-          <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="white"/>
-          <g>
-            <circle cx="100" cy="100" r="44" fill="#000"/>
-            <circle cx="100" cy="100" r="19" fill="white"/>
-          </g>
-        </g>
+        <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="white"/>
+        <circle cx="100" cy="100" r="44" fill="#000"/>
+        <circle cx="100" cy="100" r="19" fill="white"/>
       </svg>
       The Watcher
     </a>
@@ -51,7 +34,7 @@
       <li><a href="./html/gallery.html">Gallery</a></li>
       <li><a href="./html/contact.html">About</a></li>
     </ul>
-    <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-ks">▲ Back on Kickstarter</a>
+    <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-ks" target="_blank" rel="noopener">▲ Back on Kickstarter</a>
     <button class="nav-toggle" aria-label="Menu">☰</button>
   </div>
 </nav>
@@ -68,7 +51,7 @@
     <h1>Two Drones. One Base.<br><span class="accent">24/7 Protection.</span></h1>
     <p>the_watCh3r is an autonomous home surveillance drone system built from scratch — two drones that patrol, charge, and protect your home without any human intervention.</p>
     <div class="hero-cta">
-      <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-primary">▲ Back on Kickstarter — from 5€</a>
+      <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-primary" target="_blank" rel="noopener">▲ Back on Kickstarter — from 5€</a>
       <a href="./html/tech.html" class="btn-secondary">Explore the Tech →</a>
     </div>
   </div>
@@ -89,8 +72,8 @@
     <div class="features-grid">
       <div class="feature-card">
         <span class="feature-icon">01 —</span>
-        <h3>Custom Flight Controller</h3>
-        <p>Proprietary firmware on a purpose-built board. Full PID control, sensor fusion, telemetry logging, and safety failsafes — all written from scratch.</p>
+        <h3>Custom Flight Stack</h3>
+        <p>SpeedyBee F405 V3 running INAV, tuned and configured by hand, with a Raspberry Pi companion computer running custom mission software over MAVLink.</p>
         <span class="feature-badge badge-active">Active Development</span>
       </div>
       <div class="feature-card">
@@ -146,7 +129,7 @@
     <h2 class="section-title">Progress in numbers.</h2>
     <div class="stats-grid">
       <div class="stat-card"><span class="value">6+</span><span class="label">Months of Development</span></div>
-      <div class="stat-card"><span class="value">100%</span><span class="label">Custom Firmware</span></div>
+      <div class="stat-card"><span class="value">24/7</span><span class="label">Autonomous Coverage</span></div>
       <div class="stat-card"><span class="value">3</span><span class="label">Prototypes Built</span></div>
       <div class="stat-card"><span class="value">∞</span><span class="label">Coffee Consumed</span></div>
     </div>
@@ -155,7 +138,7 @@
 
 <!-- ── About the Project ── -->
 <section style="padding: 5.5rem 2rem; border-top: 1px solid var(--card-border);">
-  <div class="two-col" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
+  <div class="two-col" style="max-width: 1200px; margin: 0 auto;">
     <div>
       <span class="section-label">The Builder</span>
       <h2 class="section-title">Hi, I'm Djalil.</h2>
@@ -259,7 +242,7 @@
 
 <!-- ── Budget ── -->
 <section style="background: var(--bg2); border-top: 1px solid var(--card-border); padding: 5.5rem 2rem;">
-  <div class="two-col" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;">
+  <div class="two-col align-start" style="max-width: 1200px; margin: 0 auto;">
     <div>
       <span class="section-label">Transparency</span>
       <h2 class="section-title">Where your money goes.</h2>
@@ -392,6 +375,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="./assets/js/drone-scene.js"></script>
 <script src="./assets/js/main.js"></script>
-<script src="./assets/js/eye.js"></script>
 </body>
 </html>

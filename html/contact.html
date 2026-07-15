@@ -16,7 +16,12 @@
 <nav class="navbar">
   <div class="nav-container">
     <a href="../index.html" class="logo">
-      <div class="logo-mark">◈</div>
+      <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Watcher Logo">
+        <rect width="200" height="200" fill="#000"/>
+        <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="white"/>
+        <circle cx="100" cy="100" r="44" fill="#000"/>
+        <circle cx="100" cy="100" r="19" fill="white"/>
+      </svg>
       The Watcher
     </a>
     <ul class="nav-links">
@@ -25,7 +30,7 @@
       <li><a href="./gallery.html">Gallery</a></li>
       <li><a href="./contact.html" class="active">About</a></li>
     </ul>
-    <a href="../index.html#kickstarter" class="btn-ks">▲ Back on Kickstarter</a>
+    <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-ks" target="_blank" rel="noopener">▲ Back on Kickstarter</a>
     <button class="nav-toggle" aria-label="Menu">☰</button>
   </div>
 </nav>
@@ -43,10 +48,10 @@
     <!-- ── About the creator ── -->
     <div class="about-info">
       <span class="section-label">The Builder</span>
-      <h3>Hi, I'm Mohamed.</h3>
-      <p>I'm an engineer and maker obsessed with autonomous systems. The Watcher started as a question: <em>what if I built a drone entirely from scratch — controller, firmware, navigation, everything?</em></p>
-      <p>Months later, that question became hardware. The Watcher is my most ambitious project yet, and with your support on Kickstarter it's about to become a whole lot smarter.</p>
-      <p>This project is 100% built by me: airframe, PCB, custom firmware, navigation stack. No off-the-shelf flight controllers, no black-box software. I document everything.</p>
+      <h3>Hi, I'm Djalil.</h3>
+      <p>I'm a computer science student at 42 School in Lyon, obsessed with autonomous systems. The Watcher started as a question: <em>what if two drones could protect a home 24/7 — patrolling, charging, and handing off, entirely on their own?</em></p>
+      <p>Months later, that question became hardware. Drone #1 is built and flying, and with your support on Kickstarter the full system — second drone, charging base, computer vision — comes to life.</p>
+      <p>Every part of this project is assembled, configured, and coded by me: the airframe, the INAV flight stack, the Raspberry Pi mission software, the charging base. No black boxes — I document everything publicly.</p>
 
       <div style="margin-top: 2rem;">
         <span class="section-label">Links</span>
@@ -68,7 +73,7 @@
           <a href="mailto:dbenaissi@gmail.com" class="social-link">
             ✉&nbsp; Email
           </a>
-          <a href="../index.html#kickstarter" class="social-link" style="color: var(--ks); border-color: rgba(5,206,120,0.25);">
+          <a href="https://www.kickstarter.com/profile/the-watch3r" class="social-link" target="_blank" rel="noopener" style="color: var(--ks); border-color: rgba(5,206,120,0.25);">
             ▲&nbsp; Kickstarter
           </a>
         </div>
@@ -79,16 +84,16 @@
         <span class="section-label">FAQ</span>
         <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1rem;">
           <div class="faq-item">
-            <h4>Will the firmware be open-source?</h4>
-            <p>Yes — after the campaign, the core flight controller firmware will be published on GitHub under MIT license. No black boxes.</p>
+            <h4>Will the code be open-source?</h4>
+            <p>Yes — after the campaign, the mission software and charging base code will be published on GitHub under MIT license. No black boxes.</p>
           </div>
           <div class="faq-item">
             <h4>What does backing unlock?</h4>
-            <p>Backing funds the computer vision module development, hardware revision v2, and accelerates the full autonomous navigation stack. Phase 5 only exists with your support.</p>
+            <p>Backing funds the second drone, the autonomous charging base, and the computer vision module. Phase 5 only exists with your support.</p>
           </div>
           <div class="faq-item">
             <h4>What's the timeline?</h4>
-            <p>The Kickstarter campaign is live now. Full prototype (Phase 4 complete) is targeted for Q3 2025, with CV module to follow if funded.</p>
+            <p>The Kickstarter campaign is live now. The full two-drone system (Phase 4 complete) is targeted for early 2027, with the CV module to follow if funded.</p>
           </div>
           <div class="faq-item">
             <h4>Can I follow the build progress?</h4>

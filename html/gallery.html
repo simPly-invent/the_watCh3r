@@ -16,7 +16,12 @@
 <nav class="navbar">
   <div class="nav-container">
     <a href="../index.html" class="logo">
-      <div class="logo-mark">◈</div>
+      <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Watcher Logo">
+        <rect width="200" height="200" fill="#000"/>
+        <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="white"/>
+        <circle cx="100" cy="100" r="44" fill="#000"/>
+        <circle cx="100" cy="100" r="19" fill="white"/>
+      </svg>
       The Watcher
     </a>
     <ul class="nav-links">
@@ -25,7 +30,7 @@
       <li><a href="./gallery.html" class="active">Gallery</a></li>
       <li><a href="./contact.html">About</a></li>
     </ul>
-    <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-ks">▲ Back on Kickstarter</a>
+    <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-ks" target="_blank" rel="noopener">▲ Back on Kickstarter</a>
     <button class="nav-toggle" aria-label="Menu">☰</button>
   </div>
 </nav>
@@ -43,6 +48,13 @@
   <p class="section-sub">Real images from the workshop — hardware, testing, and iteration in progress.</p>
 
   <div class="gallery-grid">
+
+    <div class="gallery-item">
+      <div class="gallery-ph">
+          <img src="../assets/img/IMG_5933.jpeg" alt="Drone #1 fully assembled with propellers mounted">
+      </div>
+      <div class="gallery-overlay"><span>Drone #1 — Fully Assembled</span></div>
+    </div>
 
     <div class="gallery-item">
       <div class="gallery-ph">
@@ -94,16 +106,16 @@
 
     <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-date">Phase 2 · Firmware</div>
-      <h4>Custom Flight Controller Goes Live</h4>
-      <p>First stable hover on custom PID firmware. Hundreds of tuning iterations in simulation before first real flights. Safety failsafes integrated and tested.</p>
+      <div class="timeline-date">Phase 2 · Flight Controller</div>
+      <h4>INAV Configured &amp; Ready to Fly</h4>
+      <p>INAV flashed on the SpeedyBee F405 V3 stack. ELRS receiver bound, Multishot ESC protocol set, ARM switch and failsafes configured, MAVLink bridge ready.</p>
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Phase 3 · Autonomy</div>
-      <h4>First Autonomous Waypoint Mission</h4>
-      <p>GPS integration goes live. The Watcher completes its first fully autonomous waypoint mission — navigates, holds position, and returns home without pilot input.</p>
+      <div class="timeline-dot" style="background: var(--bg); border: 1.5px solid rgba(255,255,255,0.15);"></div>
+      <div class="timeline-date">Phase 3 · In Progress</div>
+      <h4>Autonomous Waypoint Missions</h4>
+      <p>GPS module on the way. Next up: waypoint navigation, position hold, and return-to-home — the drone flies its patrol without pilot input.</p>
     </div>
 
     <div class="timeline-item">
