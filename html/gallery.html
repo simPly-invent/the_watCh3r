@@ -4,150 +4,173 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="The Watcher — Build progress photos, prototype images and development timeline of our autonomous drone project.">
-  <link rel="icon" type="image/png" href="../assets/img/big_bro.png">
+  <meta property="og:title" content="Gallery | The Watcher">
+  <meta property="og:description" content="Real photos from the workshop — the autonomous surveillance drone, assembled and flying.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://simply-invent.github.io/the_watCh3r/html/gallery.html">
+  <meta property="og:image" content="https://simply-invent.github.io/the_watCh3r/assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>Gallery | The Watcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/watcher.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="../index.html" class="logo">
-      <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Watcher Logo">
-        <rect width="200" height="200" fill="#000"/>
-        <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="white"/>
+<!-- ── Fixed chrome ── -->
+<div class="chrome">
+  <div class="topbar">
+    <a href="../index.html" class="wordmark" aria-label="The Watcher — home">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="#fff"/>
         <circle cx="100" cy="100" r="44" fill="#000"/>
-        <circle cx="100" cy="100" r="19" fill="white"/>
+        <circle cx="100" cy="100" r="19" fill="#fff"/>
       </svg>
       The Watcher
     </a>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="./tech.html">Technology</a></li>
-      <li><a href="./gallery.html" class="active">Gallery</a></li>
-      <li><a href="./contact.html">About</a></li>
-    </ul>
-    <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-ks" target="_blank" rel="noopener">▲ Back on Kickstarter</a>
-    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="topnav" aria-label="Main">
+      <a href="../index.html">Home</a>
+      <a href="./tech.html">Tech</a>
+      <a href="./gallery.html" aria-current="page">Gallery</a>
+      <a href="./contact.html">About</a>
+      <a href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">▲ Kickstarter</a>
+    </nav>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
+</div>
+
+<!-- ── Mobile menu ── -->
+<nav class="menu" id="menu" aria-label="Menu">
+  <button class="menu-close">Close ✕</button>
+  <a href="../index.html">Home</a>
+  <a href="./tech.html">Tech</a>
+  <a href="./gallery.html" aria-current="page">Gallery</a>
+  <a href="./contact.html">About</a>
+  <a href="https://www.kickstarter.com/profile/the-watch3r" class="menu-ks" target="_blank" rel="noopener">▲ Kickstarter</a>
 </nav>
 
-<div class="page-hero">
-  <p class="page-hero-label">Gallery</p>
-  <h1>Build Progress &amp;<br>Development Photos</h1>
-  <p>A visual journey through the making of The Watcher — from raw parts to flying prototype.</p>
-</div>
-
-<div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 6rem;">
-
-  <span class="section-label">Photos</span>
-  <h2 class="section-title">Prototype Gallery</h2>
-  <p class="section-sub">Real images from the workshop — hardware, testing, and iteration in progress.</p>
-
-  <div class="gallery-grid">
-
-    <div class="gallery-item">
-      <div class="gallery-ph">
-          <img src="../assets/img/IMG_5933.jpeg" alt="Drone #1 fully assembled with propellers mounted">
-      </div>
-      <div class="gallery-overlay"><span>Drone #1 — Fully Assembled</span></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="gallery-ph">
-          <img src="../assets/img/IMG_5925.jpeg" alt="Frame Assembly">
-      </div>
-      <div class="gallery-overlay"><span>Frame Assembly</span></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="gallery-ph">
-        <img src="../assets/img/IMG_5926.jpeg" alt="Flight Controller PCB">
-      </div>
-      <div class="gallery-overlay"><span>Flight Controller / ESC</span></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="gallery-ph">
-          <img src="../assets/img/IMG_5924.jpeg" alt="front structure">
-      </div>
-      <div class="gallery-overlay"><span>Quadri front side</span></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="gallery-ph">
-        <img src="../assets/img/IMG_5927.jpeg" alt="back structure">
-      </div>
-      <div class="gallery-overlay"><span>Quadri back side</span></div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="gallery-ph">
-        <img src="../assets/img/IMG_5928.jpeg" alt="elrs piece">
-      </div>
-      <div class="gallery-overlay"><span>ELRS Receptor (CRSF protocole)</span></div>
-    </div>
-
+<!-- ── G01 · HERO ── -->
+<header class="band hero bg-orange">
+  <span class="tag">G01 — Gallery</span>
+  <h1 class="display-md reveal">The<br>Build.</h1>
+  <p class="note reveal">Real images from the workshop — hardware, testing and iteration in progress. Click any photo to enlarge.</p>
+  <div class="foot">
+    <span><a href="#photos">Photos</a></span>
+    <span><a href="#log">Build log</a></span>
   </div>
+</header>
 
-  <span class="section-label">Build Log</span>
-  <h2 class="section-title">Development Timeline</h2>
+<!-- ── G02 · PHOTOS ── -->
+<section class="band bg-black" id="photos">
+  <span class="tag">G02 — Photos</span>
 
-  <div class="timeline" style="margin-top: 2rem; max-width: 680px;">
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Phase 1 · Early Build</div>
-      <h4>Frame Design &amp; First Prototype</h4>
-      <p>First iteration of the 250mm frame. Motor and ESC selection, initial wiring harness built and tested on the bench. ESC calibration and motor direction verified.</p>
+  <div class="gallery-stack" style="margin-top: 2rem;">
+    <figure class="frame wide">
+      <img src="../assets/img/IMG_5933.webp" alt="Drone #1 fully assembled with propellers mounted" width="1600" height="1200">
+      <figcaption><span>01 — Drone #1 · fully assembled</span><span>June 2026</span></figcaption>
+    </figure>
+
+    <figure class="frame wide">
+      <img src="../assets/img/IMG_5925.webp" alt="Frame assembly" width="1600" height="1200" loading="lazy">
+      <figcaption><span>02 — Frame assembly</span></figcaption>
+    </figure>
+
+    <figure class="frame wide">
+      <img src="../assets/img/IMG_5926.webp" alt="Flight controller and ESC stack" width="1600" height="1200" loading="lazy">
+      <figcaption><span>03 — Flight controller / ESC</span></figcaption>
+    </figure>
+
+    <figure class="frame wide">
+      <img src="../assets/img/IMG_5924.webp" alt="Quadcopter front structure" width="1600" height="1200" loading="lazy">
+      <figcaption><span>04 — Front side</span></figcaption>
+    </figure>
+
+    <figure class="frame wide">
+      <img src="../assets/img/IMG_5927.webp" alt="Quadcopter back structure" width="1600" height="1200" loading="lazy">
+      <figcaption><span>05 — Back side</span></figcaption>
+    </figure>
+
+    <figure class="frame wide">
+      <img src="../assets/img/IMG_5928.webp" alt="ELRS receiver (CRSF protocol)" width="1200" height="1600" loading="lazy">
+      <figcaption><span>06 — ELRS receiver · CRSF</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ── G03 · BUILD LOG ── -->
+<section class="band bg-paper" id="log">
+  <span class="tag">G03 — Build Log</span>
+  <h2 class="section-head">Development<br>timeline.</h2>
+
+  <div class="blocks">
+    <div class="block">
+      <span class="idx">P1</span>
+      <div>
+        <h3>Frame design &amp; first prototype</h3>
+        <p>First iteration of the 250 mm frame. Motor and ESC selection, initial wiring harness built and tested on the bench. ESC calibration and motor direction verified.</p>
+      </div>
+      <span class="chip">✓ Done</span>
     </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Phase 2 · Flight Controller</div>
-      <h4>INAV Configured &amp; Ready to Fly</h4>
-      <p>INAV flashed on the SpeedyBee F405 V3 stack. ELRS receiver bound, Multishot ESC protocol set, ARM switch and failsafes configured, MAVLink bridge ready.</p>
+    <div class="block">
+      <span class="idx">P2</span>
+      <div>
+        <h3>INAV configured &amp; ready to fly</h3>
+        <p>INAV flashed on the SpeedyBee F405 V3 stack. ELRS receiver bound, Multishot ESC protocol set, ARM switch and failsafes configured, MAVLink bridge ready.</p>
+      </div>
+      <span class="chip">✓ Done</span>
     </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot" style="background: var(--bg); border: 1.5px solid rgba(255,255,255,0.15);"></div>
-      <div class="timeline-date">Phase 3 · In Progress</div>
-      <h4>Autonomous Waypoint Missions</h4>
-      <p>GPS module on the way. Next up: waypoint navigation, position hold, and return-to-home — the drone flies its patrol without pilot input.</p>
+    <div class="block">
+      <span class="idx">P3</span>
+      <div>
+        <h3>Autonomous waypoint missions</h3>
+        <p>GPS module on the way. Next up: waypoint navigation, position hold, and return-to-home — the drone flies its patrol without pilot input.</p>
+      </div>
+      <span class="chip">● In progress</span>
     </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot" style="background: var(--bg); border: 1.5px solid rgba(255,255,255,0.15);"></div>
-      <div class="timeline-date">Phase 4 · Coming Soon</div>
-      <h4>Ground Control Station</h4>
-      <p>Real-time mission planning dashboard. Live telemetry, geofence editing, and mission replay. Currently in active development.</p>
+    <div class="block">
+      <span class="idx">P4</span>
+      <div>
+        <h3>Ground control station</h3>
+        <p>Real-time mission planning dashboard. Live telemetry, geofence editing, and mission replay. Currently in active development.</p>
+      </div>
+      <span class="chip">○ Coming soon</span>
     </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot" style="background: var(--bg); border: 1.5px solid rgba(62,207,142,0.3);"></div>
-      <div class="timeline-date" style="color: var(--green);">Phase 5 · With Funding</div>
-      <h4>Computer Vision Module</h4>
-      <p>Onboard obstacle detection, visual tracking, and autonomous landing. This is what your Kickstarter backing unlocks.</p>
+    <div class="block">
+      <span class="idx">P5</span>
+      <div>
+        <h3>Computer vision module</h3>
+        <p>Onboard obstacle detection, visual tracking, and autonomous landing. This is what your Kickstarter backing unlocks.</p>
+      </div>
+      <span class="chip">○ With funding</span>
     </div>
   </div>
-
-</div>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo">◈ The Watcher</div>
-    <ul class="footer-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="./tech.html">Technology</a></li>
-      <li><a href="./gallery.html">Gallery</a></li>
-      <li><a href="./contact.html">About</a></li>
-    </ul>
-    <p>Built by <strong><a href="https://github.com/simPly-invent" target="_blank" rel="noopener noreferrer">simPly-invent</a></strong> &nbsp;·&nbsp; Autonomous Drone Project &nbsp;·&nbsp; 2026</p>
+  <div class="foot">
+    <span><a href="./tech.html">Full tech breakdown →</a></span>
   </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="band bg-red" style="text-align: center; align-items: center; padding-top: 5rem; padding-bottom: 5rem;">
+  <a href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">
+    <h2 class="display-md">Join<br>the build.</h2>
+    <p class="note" style="opacity: 1;">▲ Back The Watcher on Kickstarter — from 5€</p>
+  </a>
+</section>
+
+<footer class="wfooter">
+  <nav aria-label="Footer">
+    <a href="../index.html">Home</a>
+    <a href="./tech.html">Tech</a>
+    <a href="./gallery.html">Gallery</a>
+    <a href="./contact.html">About</a>
+  </nav>
+  <span class="credit">© 2026 — Built by <a href="https://github.com/simPly-invent" target="_blank" rel="noopener">simPly-invent</a></span>
+  <a href="mailto:dbenaissi@gmail.com">Email</a>
 </footer>
 
-<script src="../assets/js/main.js"></script>
+<script src="../assets/js/w.js"></script>
 </body>
 </html>

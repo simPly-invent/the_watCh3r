@@ -1,379 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="snap">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Watcher — An autonomous drone built from the ground up. Custom flight controller, intelligent navigation, and a mission to push autonomous aerial systems further. Now on Kickstarter.">
+  <meta name="description" content="The Watcher — an autonomous home surveillance drone system: two drones, one charging base. INAV flight stack, Raspberry Pi mission computer, fully documented. Now on Kickstarter.">
   <meta property="og:title" content="The Watcher | Autonomous Drone Project">
-  <meta property="og:description" content="Custom flight controller. Autonomous navigation. Computer vision. Launching on Kickstarter.">
+  <meta property="og:description" content="Two drones. One base. Autonomous home surveillance built from scratch by a 42 School student — now on Kickstarter.">
   <meta property="og:type" content="website">
-  <link rel="icon" type="image/png" href="./assets/img/big_bro.png">
+  <meta property="og:url" content="https://simply-invent.github.io/the_watCh3r/">
+  <meta property="og:image" content="https://simply-invent.github.io/the_watCh3r/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <title>The Watcher | Autonomous Drone Project</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/watcher.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    .w01 { align-items: center; text-align: center; }
+
+    .w01 .eye {
+      width: min(36vmin, 300px);
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+
+    .w01 .eye .blink-lid { transform-origin: 100px 65px; animation: blink 6s infinite; }
+
+    @keyframes blink {
+      0%, 91%, 100% { transform: scaleY(1); }
+      94%           { transform: scaleY(0.05); }
+      97%           { transform: scaleY(1); }
+    }
+
+    .w03 { align-items: center; }
+    .w04 { justify-content: flex-end; padding-bottom: 5rem; }
+    .w06 { align-items: center; text-align: center; }
+    .w06 .display { transition: letter-spacing 0.3s ease; }
+    .w06 a:hover .display { letter-spacing: 0.01em; }
+    .w06 .sub {
+      margin-top: 1.6rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 <body>
 
-<!-- ── Navbar ── -->
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="./index.html" class="logo">
-      <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Watcher Logo">
-        <rect width="200" height="200" fill="#000"/>
-        <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="white"/>
+<!-- ── Fixed chrome (self-inverting over every color) ── -->
+<div class="chrome">
+  <div class="topbar">
+    <a href="./index.html" class="wordmark" aria-label="The Watcher — home">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="#fff"/>
         <circle cx="100" cy="100" r="44" fill="#000"/>
-        <circle cx="100" cy="100" r="19" fill="white"/>
+        <circle cx="100" cy="100" r="19" fill="#fff"/>
       </svg>
       The Watcher
     </a>
-    <ul class="nav-links">
-      <li><a href="./index.html" class="active">Home</a></li>
-      <li><a href="./html/tech.html">Technology</a></li>
-      <li><a href="./html/gallery.html">Gallery</a></li>
-      <li><a href="./html/contact.html">About</a></li>
-    </ul>
-    <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-ks" target="_blank" rel="noopener">▲ Back on Kickstarter</a>
-    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="topnav" aria-label="Main">
+      <a href="./index.html" aria-current="page">Home</a>
+      <a href="./html/tech.html">Tech</a>
+      <a href="./html/gallery.html">Gallery</a>
+      <a href="./html/contact.html">About</a>
+      <a href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">▲ Kickstarter</a>
+    </nav>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
-</nav>
-
-<!-- ── Hero ── -->
-<section class="hero">
-  <canvas id="drone-canvas" aria-hidden="true"></canvas>
-
-  <div class="hero-content">
-    <div class="hero-tag">
-      <span class="hero-tag-dot"></span>
-      Now on Kickstarter
-    </div>
-    <h1>Two Drones. One Base.<br><span class="accent">24/7 Protection.</span></h1>
-    <p>the_watCh3r is an autonomous home surveillance drone system built from scratch — two drones that patrol, charge, and protect your home without any human intervention.</p>
-    <div class="hero-cta">
-      <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-primary" target="_blank" rel="noopener">▲ Back on Kickstarter — from 5€</a>
-      <a href="./html/tech.html" class="btn-secondary">Explore the Tech →</a>
-    </div>
-  </div>
-
-  <div class="hero-scroll" aria-hidden="true">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-</section>
-
-<!-- ── Core Features ── -->
-<section style="background: var(--bg2); border-top: 1px solid var(--card-border); padding: 5.5rem 2rem;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <span class="section-label">Core Capabilities</span>
-    <h2 class="section-title">Built different, by design.</h2>
-    <p class="section-sub">Every component was chosen and engineered for a reason — no off-the-shelf shortcuts where it counts.</p>
-
-    <div class="features-grid">
-      <div class="feature-card">
-        <span class="feature-icon">01 —</span>
-        <h3>Custom Flight Stack</h3>
-        <p>SpeedyBee F405 V3 running INAV, tuned and configured by hand, with a Raspberry Pi companion computer running custom mission software over MAVLink.</p>
-        <span class="feature-badge badge-active">Active Development</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">02 —</span>
-        <h3>Autonomous Navigation</h3>
-        <p>GPS-guided waypoint missions, altitude hold, and return-to-home. The Watcher flies its mission — without hands on the sticks.</p>
-        <span class="feature-badge badge-active">Active Development</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">03 —</span>
-        <h3>Computer Vision Module</h3>
-        <p>With your support, The Watcher gets eyes — onboard vision for obstacle detection, target tracking, and autonomous landing zone recognition.</p>
-        <span class="feature-badge badge-funded">Unlocked with Funding</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Development Progress ── -->
-<div class="progress-block">
-  <div class="inner">
-    <div>
-      <span class="section-label">Development Status</span>
-      <h2 class="section-title">Where we are today.</h2>
-      <p class="section-sub">Built over months of iteration, The Watcher is progressing steadily toward a fully autonomous prototype.</p>
-      <a href="./html/tech.html" class="btn-secondary" style="display: inline-flex;">Full roadmap →</a>
-    </div>
-    <div class="progress-items">
-      <div class="progress-item">
-        <div class="label"><span>Frame &amp; Hardware Design</span><span>100%</span></div>
-        <div class="progress-bar"><div class="progress-fill" data-width="100%"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="label"><span>Flight Controller Firmware</span><span>85%</span></div>
-        <div class="progress-bar"><div class="progress-fill" data-width="85%"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="label"><span>Autonomous Navigation</span><span>55%</span></div>
-        <div class="progress-bar"><div class="progress-fill" data-width="55%"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="label"><span>Computer Vision (with funding)</span><span>10%</span></div>
-        <div class="progress-bar"><div class="progress-fill" data-width="10%"></div></div>
-      </div>
-    </div>
-  </div>
+  <div class="counter" id="counter" data-total="06" aria-hidden="true">W01 / 06</div>
 </div>
 
-<!-- ── Stats ── -->
-<section style="padding: 5.5rem 2rem;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <span class="section-label">By the Numbers</span>
-    <h2 class="section-title">Progress in numbers.</h2>
-    <div class="stats-grid">
-      <div class="stat-card"><span class="value">6+</span><span class="label">Months of Development</span></div>
-      <div class="stat-card"><span class="value">24/7</span><span class="label">Autonomous Coverage</span></div>
-      <div class="stat-card"><span class="value">3</span><span class="label">Prototypes Built</span></div>
-      <div class="stat-card"><span class="value">∞</span><span class="label">Coffee Consumed</span></div>
-    </div>
+<!-- ── Mobile menu ── -->
+<nav class="menu" id="menu" aria-label="Menu">
+  <button class="menu-close">Close ✕</button>
+  <a href="./index.html" aria-current="page">Home</a>
+  <a href="./html/tech.html">Tech</a>
+  <a href="./html/gallery.html">Gallery</a>
+  <a href="./html/contact.html">About</a>
+  <a href="https://www.kickstarter.com/profile/the-watch3r" class="menu-ks" target="_blank" rel="noopener">▲ Kickstarter</a>
+</nav>
+
+<!-- ── W01 · HERO ── -->
+<section class="panel bg-green w01" data-i="01">
+  <span class="tag">W01 — An Autonomous Surveillance System</span>
+  <div>
+    <svg class="eye" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Watcher eye">
+      <g class="blink-lid">
+        <path d="M 12,65 Q 100,9 188,65 Q 100,121 12,65 Z" fill="#000"/>
+        <circle cx="100" cy="65" r="34" fill="var(--green)"/>
+        <circle cx="100" cy="65" r="15" fill="#000"/>
+      </g>
+    </svg>
+    <h1 class="display">The<br>Watcher</h1>
+  </div>
+  <div class="foot">
+    <span>Two drones — one base</span>
+    <span>Scroll ↓</span>
   </div>
 </section>
 
-<!-- ── About the Project ── -->
-<section style="padding: 5.5rem 2rem; border-top: 1px solid var(--card-border);">
-  <div class="two-col" style="max-width: 1200px; margin: 0 auto;">
-    <div>
-      <span class="section-label">The Builder</span>
-      <h2 class="section-title">Hi, I'm Djalil.</h2>
-      <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.9; margin-bottom: 1.25rem;">I'm a computer science student at 42 School — a tuition-free, project-based coding school where we learn by building real things.</p>
-      <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.9; margin-bottom: 1.25rem;">I've spent months designing and building the_watCh3r — an autonomous home surveillance drone system that protects your home 24/7, without any human intervention.</p>
-      <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.9;">Two drones take turns patrolling. When one runs low on battery, it returns to the charging base autonomously. The other one takes over. The mission never stops.</p>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 1rem;">
-      <div style="background: var(--bg2); border: 1px solid var(--card-border); border-radius: 8px; padding: 1.5rem;">
-        <div style="font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.4rem;">Campaign Goal</div>
-        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 700; color: #e8e8e8; letter-spacing: -0.04em;">5,000€</div>
-        <div style="font-size: 0.82rem; color: var(--text-dim); margin-top: 0.2rem;">to build, test, and ship the full system</div>
-      </div>
-      <div style="background: var(--bg2); border: 1px solid var(--card-border); border-radius: 8px; padding: 1.5rem;">
-        <div style="font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.4rem;">School</div>
-        <div style="font-size: 1rem; font-weight: 600; color: #d0d0d0;">42 School — Lyon</div>
-        <div style="font-size: 0.82rem; color: var(--text-dim); margin-top: 0.2rem;">Project-based, peer-evaluated, tuition-free</div>
-      </div>
-      <div style="background: var(--bg2); border: 1px solid var(--card-border); border-radius: 8px; padding: 1.5rem;">
-        <div style="font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.4rem;">Status</div>
-        <div style="font-size: 1rem; font-weight: 600; color: var(--green);">Drone #1 built &amp; flying</div>
-        <div style="font-size: 0.82rem; color: var(--text-dim); margin-top: 0.2rem;">INAV flashed · ELRS bound · MAVLink ready</div>
-      </div>
-    </div>
+<!-- ── W02 · SYSTEM ── -->
+<section class="panel bg-cobalt" data-i="02">
+  <span class="tag">W02 — The System</span>
+  <h2 class="statement">
+    <span class="reveal">One patrols.</span><br>
+    <span class="reveal">One charges.</span><br>
+    <span class="reveal">They swap.</span><br>
+    <span class="reveal"><em>The mission never stops.</em></span>
+  </h2>
+  <p class="note reveal">Built from scratch by a 42 Lyon student — hardware, mission software, charging base.</p>
+</section>
+
+<!-- ── W03 · PROOF ── -->
+<section class="panel bg-black w03" data-i="03">
+  <span class="tag">W03 — Proof of Work</span>
+  <figure class="frame">
+    <img src="./assets/img/IMG_5933.webp" alt="Drone #1 fully assembled with propellers mounted" width="1600" height="1200">
+    <figcaption>
+      <span>Drone #1 — built &amp; flying</span>
+      <span>June 2026</span>
+    </figcaption>
+  </figure>
+  <div class="ticker" aria-hidden="true">
+    <span>INAV flashed — ELRS bound — MAVLink ready — Multishot ESC — F405 V3 — Raspberry Pi onboard — ARM on CH5 — failsafe set —&nbsp;</span><span>INAV flashed — ELRS bound — MAVLink ready — Multishot ESC — F405 V3 — Raspberry Pi onboard — ARM on CH5 — failsafe set —&nbsp;</span>
+  </div>
+  <div class="foot">
+    <span><a href="./html/gallery.html">Full gallery →</a></span>
   </div>
 </section>
 
-<!-- ── What I've Already Built ── -->
-<section style="background: var(--bg2); border-top: 1px solid var(--card-border); padding: 5.5rem 2rem;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <span class="section-label">Proof of Work</span>
-    <h2 class="section-title">The drone is real and it flies.</h2>
-    <p class="section-sub">I've assembled the full hardware stack. This is not a concept — this is a working machine.</p>
-
-    <div class="built-list">
-      <div class="built-item"><span class="built-check">✓</span>Frame fully assembled</div>
-      <div class="built-item"><span class="built-check">✓</span>SpeedyBee F405 V3 flight controller stack</div>
-      <div class="built-item"><span class="built-check">✓</span>4 motors mounted and tested</div>
-      <div class="built-item"><span class="built-check">✓</span>ELRS receiver (RadioMaster XR1) on UART6</div>
-      <div class="built-item"><span class="built-check">✓</span>Raspberry Pi companion computer on board</div>
-      <div class="built-item"><span class="built-check">✓</span>INAV firmware flashed and configured</div>
-      <div class="built-item"><span class="built-check">✓</span>Multishot ESC protocol configured</div>
-      <div class="built-item"><span class="built-check">✓</span>CRSF receiver protocol configured</div>
-      <div class="built-item"><span class="built-check">✓</span>ARM switch configured on CH5</div>
-      <div class="built-item"><span class="built-check">✓</span>MAVLink bridge (UART2) ready for Raspberry Pi</div>
-      <div class="built-item"><span class="built-check">✓</span>System architecture fully designed and documented</div>
-    </div>
-
-    <div style="margin-top: 2rem;">
-      <a href="./html/gallery.html" class="btn-secondary">View build gallery →</a>
-      <a href="./html/tech.html" class="btn-secondary" style="margin-left: 0.75rem;">Full tech specs →</a>
-    </div>
+<!-- ── W04 · STACK ── -->
+<section class="panel bg-orange w04" data-i="04">
+  <span class="tag">W04 — The Stack</span>
+  <nav class="rows" aria-label="Technology stack">
+    <a class="row" href="./html/tech.html#specs"><span class="idx">01</span>SpeedyBee F405 V3<span class="arrow">→</span></a>
+    <a class="row" href="./html/tech.html#flight-stack"><span class="idx">02</span>INAV<span class="arrow">→</span></a>
+    <a class="row" href="./html/tech.html#architecture"><span class="idx">03</span>Raspberry Pi<span class="arrow">→</span></a>
+    <a class="row" href="./html/tech.html#specs"><span class="idx">04</span>ELRS · CRSF<span class="arrow">→</span></a>
+    <a class="row" href="./html/tech.html#roadmap"><span class="idx">05</span>Charging base<span class="arrow">→</span></a>
+  </nav>
+  <div class="foot">
+    <span><a href="./html/tech.html">Full specs &amp; architecture →</a></span>
   </div>
 </section>
 
-<!-- ── Rewards ── -->
-<section id="rewards" style="padding: 5.5rem 2rem;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <span class="section-label">Kickstarter Rewards</span>
-    <h2 class="section-title">Pick your level of involvement.</h2>
-    <p class="section-sub">Every backer gets something real. No vague promises — just honest perks for honest support.</p>
-
-    <div class="rewards-grid">
-
-      <div class="reward-card">
-        <span class="reward-tier">01 — Supporter</span>
-        <div class="reward-price">5€</div>
-        <div class="reward-name">Supporter</div>
-        <p>Your name in the acknowledgements section of the project website and GitHub repository. A small gesture that means a lot — you're part of this from the very beginning.</p>
-      </div>
-
-      <div class="reward-card">
-        <span class="reward-tier">02 — Insider</span>
-        <div class="reward-price">20€</div>
-        <div class="reward-name">Insider</div>
-        <p>Everything in Supporter, plus access to our private development newsletter. Behind-the-scenes updates, real photos, honest challenges, and solutions — the things that never make it to GitHub.</p>
-      </div>
-
-      <div class="reward-card">
-        <span class="reward-tier">03 — Maker</span>
-        <div class="reward-price">150€</div>
-        <div class="reward-name">Maker</div>
-        <p>Everything in Insider, plus a personalized demo video of the full system in action, early beta access to the surveillance software, and your name permanently written in the source code.</p>
-      </div>
-
-      <div class="reward-card featured">
-        <span class="reward-tier ks">04 — Early Builder</span>
-        <div class="reward-price" style="color: var(--ks);">750€</div>
-        <div class="reward-name">Early Builder</div>
-        <p>Everything in Maker, plus a fully assembled, configured, and tested the_watCh3r drone — built by hand and delivered to your door. This is the real thing.</p>
-        <div class="reward-limit">Only 4 units available</div>
-      </div>
-
+<!-- ── W05 · REWARDS ── -->
+<section class="panel bg-paper" data-i="05">
+  <span class="tag">W05 — Kickstarter</span>
+  <div>
+    <h2 class="statement wide">Pick your level<br>of involvement.</h2>
+    <div class="ledger">
+      <a class="tier" href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">
+        <span class="price">5€</span><span class="name">Supporter</span><span class="perk">Your name in the credits</span>
+      </a>
+      <a class="tier" href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">
+        <span class="price">20€</span><span class="name">Insider</span><span class="perk">Private dev newsletter</span>
+      </a>
+      <a class="tier" href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">
+        <span class="price">150€</span><span class="name">Maker</span><span class="perk">Beta access + personal demo</span>
+      </a>
+      <a class="tier" href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">
+        <span class="price">750€</span><span class="name">Early Builder</span><span class="perk">A real drone — 4 units only</span>
+      </a>
     </div>
-
-    <div style="margin-top: 2rem; text-align: center;">
-      <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-primary" target="_blank" rel="noopener">▲ Back this project on Kickstarter</a>
-    </div>
+  </div>
+  <div class="foot">
+    <span><a href="./html/contact.html#budget">Where your money goes →</a></span>
+    <span><a href="./html/contact.html#faq">FAQ →</a></span>
   </div>
 </section>
 
-<!-- ── Budget ── -->
-<section style="background: var(--bg2); border-top: 1px solid var(--card-border); padding: 5.5rem 2rem;">
-  <div class="two-col align-start" style="max-width: 1200px; margin: 0 auto;">
-    <div>
-      <span class="section-label">Transparency</span>
-      <h2 class="section-title">Where your money goes.</h2>
-      <p style="color: var(--text-dim); font-size: 0.94rem; line-height: 1.9;">Every euro of this campaign is accounted for publicly. Budget updates will be posted on this GitHub repository.</p>
-      <p style="color: var(--text-dim); font-size: 0.94rem; line-height: 1.9; margin-top: 1rem;">No hidden fees. No inflated margins. This is the exact breakdown of what 5,000€ funds.</p>
-      <a href="https://github.com/simPly-invent/the_watCh3r/blob/master/README/BUDGET.md" class="btn-secondary" style="margin-top: 1.5rem; display: inline-flex;" target="_blank" rel="noopener">View BUDGET.md on GitHub →</a>
-    </div>
-    <div class="budget-list">
-      <div class="budget-row"><span>2nd drone components (frame, motors, ESC, FC)</span><span>~200€</span></div>
-      <div class="budget-row"><span>Charging base electronics (magnet, relays, pogo pins)</span><span>~150€</span></div>
-      <div class="budget-row"><span>GPS modules ×2</span><span>~50€</span></div>
-      <div class="budget-row"><span>LiPo batteries ×4</span><span>~160€</span></div>
-      <div class="budget-row"><span>Surveillance cameras ×2</span><span>~40€</span></div>
-      <div class="budget-row"><span>3D printing (landing gear, enclosures)</span><span>~100€</span></div>
-      <div class="budget-row"><span>Raspberry Pi ×2</span><span>~70€</span></div>
-      <div class="budget-row"><span>Software development</span><span>~500€</span></div>
-      <div class="budget-row"><span>Field testing &amp; iterations</span><span>~200€</span></div>
-      <div class="budget-row"><span>Reward delivery &amp; shipping</span><span>~2,500€</span></div>
-      <div class="budget-row"><span>Communication (photos, videos)</span><span>~300€</span></div>
-      <div class="budget-row"><span>Contingency buffer</span><span>~730€</span></div>
-      <div class="budget-row budget-total"><span>Total</span><span>5,000€</span></div>
-    </div>
-  </div>
+<!-- ── W06 · CTA ── -->
+<section class="panel bg-red w06" data-i="06">
+  <span class="tag">W06 — Join the Build</span>
+  <a href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">
+    <h2 class="display">Back<br>the Watcher</h2>
+    <p class="sub">▲ On Kickstarter — from 5€</p>
+  </a>
 </section>
 
-<!-- ── Risks & Challenges ── -->
-<section style="padding: 5.5rem 2rem; border-top: 1px solid var(--card-border);">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <span class="section-label">Honesty</span>
-    <h2 class="section-title">Risks &amp; Challenges</h2>
-    <p class="section-sub">Building an autonomous drone system is technically complex. I want to be fully transparent about what lies ahead.</p>
-
-    <div class="risk-grid">
-      <div class="risk-card">
-        <h4>Technical risks</h4>
-        <p>Integrating a flight controller, Raspberry Pi, GPS modules, and a custom charging base into a seamless autonomous system requires extensive testing and iteration. I'll move progressively — basic flight first, full autonomy later.</p>
-      </div>
-      <div class="risk-card">
-        <h4>Supply &amp; delivery</h4>
-        <p>Electronic components can face shipping delays or stock issues. I'll order critical parts early and maintain a buffer in the budget for alternatives.</p>
-      </div>
-      <div class="risk-card">
-        <h4>Timeline</h4>
-        <p>I'm a solo developer and student. My 6-month timeline is realistic but may shift. I'll communicate any delay immediately and transparently via monthly updates on GitHub.</p>
-      </div>
-      <div class="risk-card">
-        <h4>My commitment</h4>
-        <p>I've already built and flown the first drone. The hardware is real, the architecture is designed, the code is in progress. This campaign funds the execution — not the idea.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Monthly Updates ── -->
-<section style="background: var(--bg2); border-top: 1px solid var(--card-border); padding: 5.5rem 2rem;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <span class="section-label">Project Updates</span>
-    <h2 class="section-title">What's happened so far.</h2>
-    <p class="section-sub">Public changelog — updated every month. Full history on <a href="https://github.com/simPly-invent/the_watCh3r/blob/master/README/UPDATES.md" target="_blank" rel="noopener" style="color: var(--text);">GitHub</a>.</p>
-
-    <div class="timeline" style="max-width: 680px; margin-top: 2rem;">
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="update-tag">June 2026</div>
-        <h4 style="font-size: 0.93rem; font-weight: 600; margin-bottom: 0.4rem; color: #d0d0d0;">Kickstarter launch + full firmware config</h4>
-        <ul class="update-list">
-          <li>INAV firmware successfully flashed on SpeedyBee F405 V3</li>
-          <li>ELRS receiver configured and bound to RadioMaster Pocket</li>
-          <li>Multishot ESC protocol configured</li>
-          <li>ARM switch configured on CH5</li>
-          <li>MAVLink UART2 port configured for Raspberry Pi</li>
-          <li>Failsafe set to Land mode (RTH pending GPS arrival)</li>
-          <li>Kickstarter campaign launched</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div style="font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;">Earlier</div>
-        <h4 style="font-size: 0.93rem; font-weight: 600; margin-bottom: 0.4rem; color: #d0d0d0;">Hardware assembly &amp; architecture design</h4>
-        <ul class="update-list">
-          <li>Frame assembled, motors mounted and tested</li>
-          <li>Full system architecture designed and documented</li>
-          <li>GitHub Pages site launched</li>
-          <li>3D model for Raspberry Pi support printed and fitted</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── Supporters ── -->
-<section style="padding: 5.5rem 2rem; border-top: 1px solid var(--card-border);">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <span class="section-label">Community</span>
-    <h2 class="section-title">Our Supporters</h2>
-    <p class="section-sub">These people believed in the_watCh3r from day one. Your name appears here after backing on Kickstarter.</p>
-
-    <ul id="supporters-list" class="supporters-tags">
-      <!-- supporter names added manually after each contribution -->
-    </ul>
-    <p class="supporters-empty" id="supporters-empty">Be the first to back this project on Kickstarter.</p>
-  </div>
-</section>
-
-<!-- ── Kickstarter CTA ── -->
-<section id="kickstarter" class="cta-banner">
-  <span class="section-label">the_watCh3r — Now on Kickstarter</span>
-  <h2 class="section-title">Two drones. One base. Infinite protection.</h2>
-  <p class="section-sub" style="margin: 0 auto 2.5rem;">Every backer brings the_watCh3r closer to its first fully autonomous mission. Join the build from as little as 5€.</p>
-  <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-primary" style="font-size: 1rem; padding: 1rem 2.5rem;" target="_blank" rel="noopener">▲ Back this project — Starting at 5€</a>
-</section>
-
-<!-- ── Footer ── -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo">◈ The Watcher</div>
-    <ul class="footer-links">
-      <li><a href="./index.html">Home</a></li>
-      <li><a href="./html/tech.html">Technology</a></li>
-      <li><a href="./html/gallery.html">Gallery</a></li>
-      <li><a href="./html/contact.html">About</a></li>
-    </ul>
-    <p>Built by <strong><a href="https://github.com/simPly-invent">simPly-invent</a></strong> &nbsp;·&nbsp; Autonomous Drone Project &nbsp;·&nbsp; 2026</p>
-  </div>
+<footer class="wfooter">
+  <nav aria-label="Footer">
+    <a href="./index.html">Home</a>
+    <a href="./html/tech.html">Tech</a>
+    <a href="./html/gallery.html">Gallery</a>
+    <a href="./html/contact.html">About</a>
+  </nav>
+  <span class="credit">© 2026 — Built by <a href="https://github.com/simPly-invent" target="_blank" rel="noopener">simPly-invent</a></span>
+  <a href="mailto:dbenaissi@gmail.com">Email</a>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="./assets/js/drone-scene.js"></script>
-<script src="./assets/js/main.js"></script>
+<script src="./assets/js/w.js"></script>
 </body>
 </html>

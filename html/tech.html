@@ -3,255 +3,286 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Watcher — Detailed technical specs, custom flight controller architecture, and development roadmap for our autonomous drone project.">
-  <link rel="icon" type="image/png" href="../assets/img/big_bro.png">
+  <meta name="description" content="The Watcher — Hardware specs, INAV flight stack, system architecture and development roadmap for our autonomous surveillance drone.">
+  <meta property="og:title" content="Technology | The Watcher">
+  <meta property="og:description" content="Hardware specs, INAV flight stack, system architecture and roadmap of the autonomous surveillance drone.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://simply-invent.github.io/the_watCh3r/html/tech.html">
+  <meta property="og:image" content="https://simply-invent.github.io/the_watCh3r/assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>Technology | The Watcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/watcher.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    .diagram { background: #fff; padding: 1rem 0 0; }
+    .diagram + .diagram { margin-top: 3.5rem; }
+    .diagram .holder { overflow-x: auto; border: 1px solid #000; padding: 1.5rem; }
+    .diagram img { display: block; margin: 0 auto; }
+  </style>
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="../index.html" class="logo">
-      <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Watcher Logo">
-        <rect width="200" height="200" fill="#000"/>
-        <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="white"/>
+<!-- ── Fixed chrome ── -->
+<div class="chrome">
+  <div class="topbar">
+    <a href="../index.html" class="wordmark" aria-label="The Watcher — home">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="#fff"/>
         <circle cx="100" cy="100" r="44" fill="#000"/>
-        <circle cx="100" cy="100" r="19" fill="white"/>
+        <circle cx="100" cy="100" r="19" fill="#fff"/>
       </svg>
       The Watcher
     </a>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="./tech.html" class="active">Technology</a></li>
-      <li><a href="./gallery.html">Gallery</a></li>
-      <li><a href="./contact.html">About</a></li>
-    </ul>
-    <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-ks" target="_blank" rel="noopener">▲ Back on Kickstarter</a>
-    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="topnav" aria-label="Main">
+      <a href="../index.html">Home</a>
+      <a href="./tech.html" aria-current="page">Tech</a>
+      <a href="./gallery.html">Gallery</a>
+      <a href="./contact.html">About</a>
+      <a href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">▲ Kickstarter</a>
+    </nav>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
-</nav>
-
-<div class="page-hero">
-  <p class="page-hero-label">Technology</p>
-  <h1>The Engineering Behind<br>The Watcher</h1>
-  <p>A full breakdown of the hardware, firmware, and systems that power our autonomous drone platform.</p>
 </div>
 
-<!-- ── Anchor sub-nav ── -->
-<nav class="subnav" aria-label="Page sections">
-  <div class="subnav-inner">
-    <a href="#specs">Specs</a>
-    <a href="#architecture">Architecture</a>
-    <a href="#flight-stack">Flight Stack</a>
-    <a href="#progress">Progress</a>
-    <a href="#roadmap">Roadmap</a>
-  </div>
+<!-- ── Mobile menu ── -->
+<nav class="menu" id="menu" aria-label="Menu">
+  <button class="menu-close">Close ✕</button>
+  <a href="../index.html">Home</a>
+  <a href="./tech.html" aria-current="page">Tech</a>
+  <a href="./gallery.html">Gallery</a>
+  <a href="./contact.html">About</a>
+  <a href="https://www.kickstarter.com/profile/the-watch3r" class="menu-ks" target="_blank" rel="noopener">▲ Kickstarter</a>
 </nav>
 
-<div style="max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 6rem;">
+<!-- ── T01 · HERO ── -->
+<header class="band hero bg-cobalt">
+  <span class="tag">T01 — Technology</span>
+  <h1 class="display-md reveal">The<br>Engineering.</h1>
+  <p class="note reveal">A full breakdown of the hardware, firmware and systems that power The Watcher — every component, every choice, documented.</p>
+  <div class="foot">
+    <span><a href="#specs">Specs</a></span>
+    <span><a href="#architecture">Architecture</a></span>
+    <span><a href="#flight-stack">Flight stack</a></span>
+    <span><a href="#progress">Progress</a></span>
+    <span><a href="#roadmap">Roadmap</a></span>
+  </div>
+</header>
 
-  <!-- ── Specs ── -->
-  <span class="section-label" id="specs" style="scroll-margin-top: 120px;">Specifications</span>
-  <h2 class="section-title">Hardware Overview</h2>
+<!-- ── T02 · SPECIFICATIONS ── -->
+<section class="band bg-paper" id="specs">
+  <span class="tag">T02 — Specifications</span>
+  <h2 class="section-head">Hardware<br>overview.</h2>
 
-  <div class="spec-card" style="margin-top: 1.5rem;">
-    <div class="spec-card-header">Physical &amp; Flight</div>
-    <table class="spec-table">
-      <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
-      <tbody>
-        <tr><td>Frame Size</td><td>250mm diagonal</td></tr>
-        <tr><td>Total Weight (no payload)</td><td>~310 g</td></tr>
-        <tr><td>Max Takeoff Weight</td><td>650 g</td></tr>
-        <tr><td>Propellers</td><td>5-inch, 3-blade</td></tr>
-        <tr><td>Frame Material</td><td>Carbon fiber</td></tr>
-        <tr><td>Motors</td><td>AxisFlying AE2207 V2 — 6S ×4</td></tr>
-        <tr><td>Battery</td><td>ManiaX 6S 1800mAh LiPo — 150C XT60</td></tr>
-        <tr><td>Estimated Flight Time</td><td>12 – 18 min (mission dependent)</td></tr>
-        <tr><td>Max Operational Range</td><td>~800 m (with telemetry link)</td></tr>
-      </tbody>
+  <div class="spec-block">
+    <p class="spec-title">Physical &amp; Flight</p>
+    <table class="spec">
+      <tr><td>Frame size</td><td>250 mm diagonal</td></tr>
+      <tr><td>Total weight (no payload)</td><td>~310 g</td></tr>
+      <tr><td>Max takeoff weight</td><td>650 g</td></tr>
+      <tr><td>Propellers</td><td>5-inch · 3-blade</td></tr>
+      <tr><td>Frame material</td><td>Carbon fiber</td></tr>
+      <tr><td>Motors</td><td>AxisFlying AE2207 V2 — 6S ×4</td></tr>
+      <tr><td>Battery</td><td>ManiaX 6S 1800 mAh LiPo — 150C XT60</td></tr>
+      <tr><td>Estimated flight time</td><td>12 – 18 min (mission dependent)</td></tr>
+      <tr><td>Max operational range</td><td>~800 m (with telemetry link)</td></tr>
     </table>
   </div>
 
-  <div class="spec-card" style="margin-top: 1.5rem;">
-    <div class="spec-card-header">Electronics &amp; Compute — Drone</div>
-    <table class="spec-table">
-      <thead><tr><th>Component</th><th>Details</th></tr></thead>
-      <tbody>
-        <tr><td>Flight Controller</td><td>SpeedyBee F405 V3 Stack (FC + 4-in-1 ESC)</td></tr>
-        <tr><td>ESC Protocol</td><td>Multishot</td></tr>
-        <tr><td>Firmware</td><td>INAV</td></tr>
-        <tr><td>RC Receiver</td><td>RadioMaster XR1 — ELRS 2.4 GHz on UART6</td></tr>
-        <tr><td>RC Protocol</td><td>CRSF</td></tr>
-        <tr><td>RC Transmitter</td><td>RadioMaster Pocket</td></tr>
-        <tr><td>GPS Module</td><td>In transit — u-blox M10 compatible</td></tr>
-        <tr><td>Companion Computer</td><td>Raspberry Pi</td></tr>
-        <tr><td>MAVLink Bridge</td><td>UART2 — configured, ready for Raspberry Pi</td></tr>
-        <tr><td>ARM Switch</td><td>CH5</td></tr>
-        <tr><td>Failsafe</td><td>Land (RTH when GPS arrives)</td></tr>
-        <tr><td>Camera (surveillance)</td><td>Onboard — in development</td></tr>
-      </tbody>
+  <div class="spec-block">
+    <p class="spec-title">Electronics &amp; Compute — Drone</p>
+    <table class="spec">
+      <tr><td>Flight controller</td><td>SpeedyBee F405 V3 stack (FC + 4-in-1 ESC)</td></tr>
+      <tr><td>ESC protocol</td><td>Multishot</td></tr>
+      <tr><td>Firmware</td><td>INAV</td></tr>
+      <tr><td>RC receiver</td><td>RadioMaster XR1 — ELRS 2.4 GHz on UART6</td></tr>
+      <tr><td>RC protocol</td><td>CRSF</td></tr>
+      <tr><td>RC transmitter</td><td>RadioMaster Pocket</td></tr>
+      <tr><td>GPS module</td><td>In transit — u-blox M10 compatible</td></tr>
+      <tr><td>Companion computer</td><td>Raspberry Pi</td></tr>
+      <tr><td>MAVLink bridge</td><td>UART2 — configured, ready</td></tr>
+      <tr><td>ARM switch</td><td>CH5</td></tr>
+      <tr><td>Failsafe</td><td>Land (RTH when GPS arrives)</td></tr>
+      <tr><td>Surveillance camera</td><td>Onboard — in development</td></tr>
     </table>
   </div>
 
-  <div class="spec-card" style="margin-top: 1.5rem;">
-    <div class="spec-card-header">Charging Base — In Development</div>
-    <table class="spec-table">
-      <thead><tr><th>Component</th><th>Details</th></tr></thead>
-      <tbody>
-        <tr><td>Controller</td><td>Raspberry Pi</td></tr>
-        <tr><td>Holding mechanism</td><td>Electromagnet</td></tr>
-        <tr><td>Charging contacts</td><td>2× relay pads (XT60 + JST-XH balance)</td></tr>
-        <tr><td>Precision docking</td><td>Pogo pins</td></tr>
-        <tr><td>Communication</td><td>WiFi / MAVLink</td></tr>
-        <tr><td>Power supply</td><td>220V AC → 24V / 5V DC</td></tr>
-        <tr><td>Estimated cost</td><td>~150€</td></tr>
-      </tbody>
+  <div class="spec-block">
+    <p class="spec-title">Charging Base — In Development</p>
+    <table class="spec">
+      <tr><td>Controller</td><td>Raspberry Pi</td></tr>
+      <tr><td>Holding mechanism</td><td>Electromagnet</td></tr>
+      <tr><td>Charging contacts</td><td>2× relay pads (XT60 + JST-XH balance)</td></tr>
+      <tr><td>Precision docking</td><td>Pogo pins</td></tr>
+      <tr><td>Communication</td><td>WiFi / MAVLink</td></tr>
+      <tr><td>Power supply</td><td>220 V AC → 24 V / 5 V DC</td></tr>
+      <tr><td>Estimated cost</td><td>~150€</td></tr>
     </table>
   </div>
-
-  <!-- ── Architecture Diagram ── -->
-  <div id="architecture" style="margin-top: 3.5rem; scroll-margin-top: 120px;">
-    <span class="section-label">System Architecture</span>
-    <h2 class="section-title">How it all connects.</h2>
-    <p class="section-sub">Complete hardware connection diagram — from the flight controller to the Raspberry Pi, ESCs, motors, GPS, and battery.</p>
-
-    <div style="margin-top: 1rem;">
-      <span class="section-label" style="margin-bottom: 0.5rem;">Drone Architecture</span>
-      <div style="overflow-x: auto; background: #fff; border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem;">
-        <img src="../assets/img/svg/drone_architecture.svg" alt="Drone system architecture diagram" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
-      </div>
-    </div>
-
-    <div style="margin-top: 1.5rem;">
-      <span class="section-label" style="margin-bottom: 0.5rem;">Charging Base Architecture</span>
-      <div style="overflow-x: auto; background: #fff; border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem;">
-        <img src="../assets/img/svg/charging_base_electroaimant_v2.svg" alt="Charging base system architecture diagram" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Flight Stack ── -->
-  <div id="flight-stack" style="margin-top: 4.5rem; scroll-margin-top: 120px;">
-    <span class="section-label">Core System</span>
-    <h2 class="section-title">Flight Stack</h2>
-    <p class="section-sub">The heart of The Watcher — INAV on a SpeedyBee F405 V3, tuned by hand, with a Raspberry Pi companion computer running the custom mission layer.</p>
-
-    <div class="features-grid">
-      <div class="feature-card">
-        <span class="feature-icon">01 —</span>
-        <h3>Tuned Flight Control</h3>
-        <p>INAV firmware flashed and configured for The Watcher's exact airframe — Multishot ESC protocol, CRSF receiver link, and hand-tuned flight modes.</p>
-        <span class="feature-badge badge-active">Implemented</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">02 —</span>
-        <h3>Companion Computer</h3>
-        <p>A Raspberry Pi rides onboard, linked to the flight controller over MAVLink (UART2). It will run the surveillance logic, patrol scheduling, and base-station handoff.</p>
-        <span class="feature-badge badge-active">Bridge Ready</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">03 —</span>
-        <h3>Safety Systems</h3>
-        <p>Link-loss failsafe set to Land (return-to-home once GPS arrives), low-battery failsafe, and an ARM switch on CH5 — safety first, autonomy second.</p>
-        <span class="feature-badge badge-active">Configured</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Progress ── -->
-  <div id="progress" style="margin-top: 4.5rem; scroll-margin-top: 120px;">
-    <span class="section-label">Development Progress</span>
-    <h2 class="section-title">System Completion</h2>
-
-    <div class="progress-items" style="margin-top: 2rem; max-width: 680px;">
-      <div class="progress-item">
-        <div class="label"><span>Frame Design &amp; Assembly</span><span>100%</span></div>
-        <div class="progress-bar"><div class="progress-fill" data-width="100%"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="label"><span>Flight Controller Setup (INAV)</span><span>85%</span></div>
-        <div class="progress-bar"><div class="progress-fill" data-width="85%"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="label"><span>Charging Base (electromagnet dock)</span><span>40%</span></div>
-        <div class="progress-bar"><div class="progress-fill" data-width="40%"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="label"><span>Autonomous Mission Logic</span><span>55%</span></div>
-        <div class="progress-bar"><div class="progress-fill" data-width="55%"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="label"><span>Ground Control Station</span><span>35%</span></div>
-        <div class="progress-bar"><div class="progress-fill" data-width="35%"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="label"><span>Computer Vision Module (with funding)</span><span>0%</span></div>
-        <div class="progress-bar"><div class="progress-fill" data-width="0%"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Roadmap ── -->
-  <div id="roadmap" style="margin-top: 4.5rem; scroll-margin-top: 120px;">
-    <span class="section-label">Roadmap</span>
-    <h2 class="section-title">Development Phases</h2>
-
-    <div class="roadmap">
-      <div class="roadmap-item done">
-        <span class="roadmap-phase phase-done">✓ Complete</span>
-        <h4>Phase 1 — Frame &amp; Electronics</h4>
-        <p>250mm carbon airframe assembly, motor and ESC selection, SpeedyBee F405 V3 stack installation and full wiring harness.</p>
-      </div>
-      <div class="roadmap-item done">
-        <span class="roadmap-phase phase-done">✓ Complete</span>
-        <h4>Phase 2 — Flight Controller Setup</h4>
-        <p>INAV flashed and configured: Multishot ESC protocol, ELRS/CRSF receiver binding, ARM switch, failsafes, and MAVLink bridge for the Raspberry Pi.</p>
-      </div>
-      <div class="roadmap-item">
-        <span class="roadmap-phase phase-current">● In Progress</span>
-        <h4>Phase 3 — Autonomous Navigation</h4>
-        <p>GPS waypoint missions, altitude hold, return-to-home, and companion computer integration for higher-level mission planning.</p>
-      </div>
-      <div class="roadmap-item planned">
-        <span class="roadmap-phase phase-planned">○ Planned</span>
-        <h4>Phase 4 — Ground Control Station</h4>
-        <p>Real-time telemetry dashboard, visual mission planning interface, geofence editor, and flight replay analysis.</p>
-      </div>
-      <div class="roadmap-item planned">
-        <span class="roadmap-phase phase-planned">○ With Funding</span>
-        <h4>Phase 5 — Computer Vision</h4>
-        <p>Onboard obstacle detection, visual target tracking, and autonomous landing zone recognition using the onboard camera and Raspberry Pi.</p>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ── CTA ── -->
-<section class="cta-banner">
-  <span class="section-label">Support the Project</span>
-  <h2 class="section-title">Unlock Phase 5.</h2>
-  <p class="section-sub" style="margin: 0 auto 2.5rem;">Back The Watcher on Kickstarter to fund the computer vision module — turning this drone into a truly intelligent autonomous system.</p>
-  <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-primary" target="_blank" rel="noopener">▲ Back on Kickstarter →</a>
 </section>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo">◈ The Watcher</div>
-    <ul class="footer-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="./tech.html">Technology</a></li>
-      <li><a href="./gallery.html">Gallery</a></li>
-      <li><a href="./contact.html">About</a></li>
-    </ul>
-    <p>Built by <strong><a href="https://github.com/simPly-invent" target="_blank" rel="noopener noreferrer">simPly-invent</a></strong> &nbsp;·&nbsp; Autonomous Drone Project &nbsp;·&nbsp; 2026</p>
+<!-- ── T03 · ARCHITECTURE ── -->
+<section class="band bg-white" id="architecture">
+  <span class="tag">T03 — System Architecture</span>
+  <h2 class="section-head">How it all<br>connects.</h2>
+  <p class="note" style="margin-top: 0;">Complete hardware connection diagrams — from the flight controller to the Raspberry Pi, ESCs, motors, GPS and battery.</p>
+
+  <div class="diagram" style="margin-top: 3rem;">
+    <p class="spec-title">01 — Drone architecture</p>
+    <div class="holder">
+      <img src="../assets/img/svg/drone_architecture.svg" alt="Drone system architecture diagram">
+    </div>
   </div>
+
+  <div class="diagram">
+    <p class="spec-title">02 — Charging base architecture</p>
+    <div class="holder">
+      <img src="../assets/img/svg/charging_base_electroaimant_v2.svg" alt="Charging base system architecture diagram">
+    </div>
+  </div>
+</section>
+
+<!-- ── T04 · FLIGHT STACK ── -->
+<section class="band bg-orange" id="flight-stack">
+  <span class="tag">T04 — Core System</span>
+  <h2 class="section-head">The flight<br>stack.</h2>
+  <p class="note" style="margin-top: 0; margin-bottom: 2.4rem;">The heart of The Watcher — INAV on a SpeedyBee F405 V3, tuned by hand, with a Raspberry Pi companion computer running the custom mission layer.</p>
+
+  <div class="blocks">
+    <div class="block">
+      <span class="idx">01</span>
+      <div>
+        <h3>Tuned flight control</h3>
+        <p>INAV firmware flashed and configured for The Watcher's exact airframe — Multishot ESC protocol, CRSF receiver link, and hand-tuned flight modes.</p>
+      </div>
+      <span class="chip">Implemented</span>
+    </div>
+    <div class="block">
+      <span class="idx">02</span>
+      <div>
+        <h3>Companion computer</h3>
+        <p>A Raspberry Pi rides onboard, linked to the flight controller over MAVLink (UART2). It will run the surveillance logic, patrol scheduling, and base-station handoff.</p>
+      </div>
+      <span class="chip">Bridge ready</span>
+    </div>
+    <div class="block">
+      <span class="idx">03</span>
+      <div>
+        <h3>Safety systems</h3>
+        <p>Link-loss failsafe set to Land (return-to-home once GPS arrives), low-battery failsafe, and an ARM switch on CH5 — safety first, autonomy second.</p>
+      </div>
+      <span class="chip">Configured</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── T05 · PROGRESS ── -->
+<section class="band bg-black" id="progress">
+  <span class="tag">T05 — Development Progress</span>
+  <h2 class="section-head">System<br>completion.</h2>
+
+  <div class="pbars">
+    <div class="pbar">
+      <div class="plabel"><span>Frame design &amp; assembly</span><span>100%</span></div>
+      <div class="track"><div class="fill" data-w="100%" style="--w: 100%;"></div></div>
+    </div>
+    <div class="pbar">
+      <div class="plabel"><span>Flight controller setup (INAV)</span><span>85%</span></div>
+      <div class="track"><div class="fill" data-w="85%" style="--w: 85%;"></div></div>
+    </div>
+    <div class="pbar">
+      <div class="plabel"><span>Autonomous mission logic</span><span>55%</span></div>
+      <div class="track"><div class="fill" data-w="55%" style="--w: 55%;"></div></div>
+    </div>
+    <div class="pbar">
+      <div class="plabel"><span>Charging base (electromagnet dock)</span><span>40%</span></div>
+      <div class="track"><div class="fill" data-w="40%" style="--w: 40%;"></div></div>
+    </div>
+    <div class="pbar">
+      <div class="plabel"><span>Ground control station</span><span>35%</span></div>
+      <div class="track"><div class="fill" data-w="35%" style="--w: 35%;"></div></div>
+    </div>
+    <div class="pbar">
+      <div class="plabel"><span>Computer vision module (with funding)</span><span>0%</span></div>
+      <div class="track"><div class="fill" data-w="0%" style="--w: 0%;"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── T06 · ROADMAP ── -->
+<section class="band bg-green" id="roadmap">
+  <span class="tag">T06 — Roadmap</span>
+  <h2 class="section-head">Development<br>phases.</h2>
+
+  <div class="blocks">
+    <div class="block">
+      <span class="idx">P1</span>
+      <div>
+        <h3>Frame &amp; electronics</h3>
+        <p>250 mm carbon airframe assembly, motor and ESC selection, SpeedyBee F405 V3 stack installation and full wiring harness.</p>
+      </div>
+      <span class="chip">✓ Complete</span>
+    </div>
+    <div class="block">
+      <span class="idx">P2</span>
+      <div>
+        <h3>Flight controller setup</h3>
+        <p>INAV flashed and configured: Multishot ESC protocol, ELRS/CRSF receiver binding, ARM switch, failsafes, and MAVLink bridge for the Raspberry Pi.</p>
+      </div>
+      <span class="chip">✓ Complete</span>
+    </div>
+    <div class="block">
+      <span class="idx">P3</span>
+      <div>
+        <h3>Autonomous navigation</h3>
+        <p>GPS waypoint missions, altitude hold, return-to-home, and companion computer integration for higher-level mission planning.</p>
+      </div>
+      <span class="chip">● In progress</span>
+    </div>
+    <div class="block">
+      <span class="idx">P4</span>
+      <div>
+        <h3>Ground control station</h3>
+        <p>Real-time telemetry dashboard, visual mission planning interface, geofence editor, and flight replay analysis.</p>
+      </div>
+      <span class="chip">○ Planned</span>
+    </div>
+    <div class="block">
+      <span class="idx">P5</span>
+      <div>
+        <h3>Computer vision</h3>
+        <p>Onboard obstacle detection, visual target tracking, and autonomous landing zone recognition using the onboard camera and Raspberry Pi.</p>
+      </div>
+      <span class="chip">○ With funding</span>
+    </div>
+  </div>
+  <div class="foot">
+    <span><a href="./gallery.html">Build log →</a></span>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="band bg-red" style="text-align: center; align-items: center; padding-top: 5rem; padding-bottom: 5rem;">
+  <a href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">
+    <h2 class="display-md">Unlock<br>Phase 5.</h2>
+    <p class="note" style="opacity: 1;">▲ Back The Watcher on Kickstarter — fund the computer vision module</p>
+  </a>
+</section>
+
+<footer class="wfooter">
+  <nav aria-label="Footer">
+    <a href="../index.html">Home</a>
+    <a href="./tech.html">Tech</a>
+    <a href="./gallery.html">Gallery</a>
+    <a href="./contact.html">About</a>
+  </nav>
+  <span class="credit">© 2026 — Built by <a href="https://github.com/simPly-invent" target="_blank" rel="noopener">simPly-invent</a></span>
+  <a href="mailto:dbenaissi@gmail.com">Email</a>
 </footer>
 
-<script src="../assets/js/main.js"></script>
+<script src="../assets/js/w.js"></script>
 </body>
 </html>

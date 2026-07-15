@@ -3,147 +3,290 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Watcher — About the creator and how to get in touch with the team behind this autonomous drone project.">
-  <link rel="icon" type="image/png" href="../assets/img/big_bro.png">
+  <meta name="description" content="The Watcher — About the creator, budget transparency, risks, FAQ and how to get in touch.">
+  <meta property="og:title" content="About | The Watcher">
+  <meta property="og:description" content="Meet the 42 School student building an autonomous home surveillance drone system — and get in touch.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://simply-invent.github.io/the_watCh3r/html/contact.html">
+  <meta property="og:image" content="https://simply-invent.github.io/the_watCh3r/assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>About | The Watcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/watcher.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    #bio .tier { grid-template-columns: 9.5rem 1fr auto; }
+    #bio .tier .price { white-space: nowrap; font-size: clamp(1.3rem, 3vw, 2.2rem); }
+    @media (max-width: 640px) {
+      #bio .tier { grid-template-columns: 6.5rem 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="../index.html" class="logo">
-      <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Watcher Logo">
-        <rect width="200" height="200" fill="#000"/>
-        <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="white"/>
+<!-- ── Fixed chrome ── -->
+<div class="chrome">
+  <div class="topbar">
+    <a href="../index.html" class="wordmark" aria-label="The Watcher — home">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 12,100 Q 100,44 188,100 Q 100,156 12,100 Z" fill="#fff"/>
         <circle cx="100" cy="100" r="44" fill="#000"/>
-        <circle cx="100" cy="100" r="19" fill="white"/>
+        <circle cx="100" cy="100" r="19" fill="#fff"/>
       </svg>
       The Watcher
     </a>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="./tech.html">Technology</a></li>
-      <li><a href="./gallery.html">Gallery</a></li>
-      <li><a href="./contact.html" class="active">About</a></li>
-    </ul>
-    <a href="https://www.kickstarter.com/profile/the-watch3r" class="btn-ks" target="_blank" rel="noopener">▲ Back on Kickstarter</a>
-    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="topnav" aria-label="Main">
+      <a href="../index.html">Home</a>
+      <a href="./tech.html">Tech</a>
+      <a href="./gallery.html">Gallery</a>
+      <a href="./contact.html" aria-current="page">About</a>
+      <a href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">▲ Kickstarter</a>
+    </nav>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
+</div>
+
+<!-- ── Mobile menu ── -->
+<nav class="menu" id="menu" aria-label="Menu">
+  <button class="menu-close">Close ✕</button>
+  <a href="../index.html">Home</a>
+  <a href="./tech.html">Tech</a>
+  <a href="./gallery.html">Gallery</a>
+  <a href="./contact.html" aria-current="page">About</a>
+  <a href="https://www.kickstarter.com/profile/the-watch3r" class="menu-ks" target="_blank" rel="noopener">▲ Kickstarter</a>
 </nav>
 
-<div class="page-hero">
-  <p class="page-hero-label">About</p>
-  <h1>The Story Behind<br>The Watcher</h1>
-  <p>A passion project turned serious — built by one engineer determined to push autonomous flight further.</p>
-</div>
+<!-- ── A01 · HERO ── -->
+<header class="band hero bg-pink">
+  <span class="tag">A01 — About</span>
+  <h1 class="display-md reveal">The<br>Builder.</h1>
+  <p class="note reveal">A passion project turned serious — one student, one workshop, two drones.</p>
+  <div class="foot">
+    <span><a href="#bio">Bio</a></span>
+    <span><a href="#budget">Budget</a></span>
+    <span><a href="#risks">Risks</a></span>
+    <span><a href="#faq">FAQ</a></span>
+    <span><a href="#contact">Contact</a></span>
+  </div>
+</header>
 
-<div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 6rem;">
+<!-- ── A02 · BIO ── -->
+<section class="band bg-paper" id="bio">
+  <span class="tag">A02 — The Builder</span>
+  <h2 class="section-head">Hi,<br>I'm Djalil.</h2>
 
-  <div class="contact-grid">
+  <div class="prose">
+    <p>I'm a computer science student at 42 School in Lyon, obsessed with autonomous systems. The Watcher started as a question: <em>what if two drones could protect a home — patrolling, charging, and handing off, entirely on their own?</em></p>
+    <p>Months later, that question became hardware. Drone #1 is built and flying, and with your support on Kickstarter the full system — second drone, charging base, computer vision — comes to life.</p>
+    <p>Every part of this project is assembled, configured, and coded by me: the airframe, the INAV flight stack, the Raspberry Pi mission software, the charging base. No black boxes — I document everything publicly.</p>
+  </div>
 
-    <!-- ── About the creator ── -->
-    <div class="about-info">
-      <span class="section-label">The Builder</span>
-      <h3>Hi, I'm Djalil.</h3>
-      <p>I'm a computer science student at 42 School in Lyon, obsessed with autonomous systems. The Watcher started as a question: <em>what if two drones could protect a home 24/7 — patrolling, charging, and handing off, entirely on their own?</em></p>
-      <p>Months later, that question became hardware. Drone #1 is built and flying, and with your support on Kickstarter the full system — second drone, charging base, computer vision — comes to life.</p>
-      <p>Every part of this project is assembled, configured, and coded by me: the airframe, the INAV flight stack, the Raspberry Pi mission software, the charging base. No black boxes — I document everything publicly.</p>
+  <div class="ledger" style="margin-top: 3rem; max-width: 780px;">
+    <div class="tier">
+      <span class="price">42</span><span class="name">School — Lyon</span><span class="perk">Project-based · tuition-free</span>
+    </div>
+    <div class="tier">
+      <span class="price">5&nbsp;000€</span><span class="name">Campaign goal</span><span class="perk">Build, test &amp; ship the full system</span>
+    </div>
+    <div class="tier">
+      <span class="price">6+</span><span class="name">Months of development</span><span class="perk">3 prototypes built</span>
+    </div>
+    <div class="tier">
+      <span class="price">#1</span><span class="name">Drone built &amp; flying</span><span class="perk">INAV flashed · ELRS bound · MAVLink ready</span>
+    </div>
+  </div>
 
-      <div style="margin-top: 2rem;">
-        <span class="section-label">Links</span>
-        <div class="social-links">
-          <a href="https://github.com/simPly-invent" class="social-link" target="_blank" rel="noopener">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577
-                0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755
-                -1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305
-                3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38
-                1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399
-                3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12
-                3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22
-                0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12
-                c0-6.63-5.37-12-12-12z"/>
-            </svg>
-            GitHub
-          </a>
-          <a href="mailto:dbenaissi@gmail.com" class="social-link">
-            ✉&nbsp; Email
-          </a>
-          <a href="https://www.kickstarter.com/profile/the-watch3r" class="social-link" target="_blank" rel="noopener" style="color: var(--ks); border-color: rgba(5,206,120,0.25);">
-            ▲&nbsp; Kickstarter
-          </a>
-        </div>
-      </div>
+  <div class="foot">
+    <span><a href="https://github.com/simPly-invent" target="_blank" rel="noopener">GitHub →</a></span>
+    <span><a href="mailto:dbenaissi@gmail.com">Email →</a></span>
+    <span><a href="https://www.kickstarter.com/profile/the-watch3r" target="_blank" rel="noopener">▲ Kickstarter →</a></span>
+  </div>
+</section>
 
-      <!-- FAQ -->
-      <div style="margin-top: 3rem;">
-        <span class="section-label">FAQ</span>
-        <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1rem;">
-          <div class="faq-item">
-            <h4>Will the code be open-source?</h4>
-            <p>Yes — after the campaign, the mission software and charging base code will be published on GitHub under MIT license. No black boxes.</p>
-          </div>
-          <div class="faq-item">
-            <h4>What does backing unlock?</h4>
-            <p>Backing funds the second drone, the autonomous charging base, and the computer vision module. Phase 5 only exists with your support.</p>
-          </div>
-          <div class="faq-item">
-            <h4>What's the timeline?</h4>
-            <p>The Kickstarter campaign is live now. The full two-drone system (Phase 4 complete) is targeted for early 2027, with the CV module to follow if funded.</p>
-          </div>
-          <div class="faq-item">
-            <h4>Can I follow the build progress?</h4>
-            <p>Absolutely — follow the GitHub org <strong>simPly-invent</strong> for code updates, and check this site's Gallery for build log photos.</p>
-          </div>
-        </div>
+<!-- ── A03 · BUDGET ── -->
+<section class="band bg-yellow" id="budget">
+  <span class="tag">A03 — Transparency</span>
+  <h2 class="section-head">Where your<br>money goes.</h2>
+  <p class="note" style="margin-top: 0;">Every euro of this campaign is accounted for publicly. No hidden fees, no inflated margins — budget updates are posted on GitHub.</p>
+
+  <div style="max-width: 780px; margin-top: 2.4rem;">
+    <div class="bline"><span>2nd drone components (frame, motors, ESC, FC)</span><span class="amount">~200€</span></div>
+    <div class="bline"><span>Charging base electronics (magnet, relays, pogo pins)</span><span class="amount">~150€</span></div>
+    <div class="bline"><span>GPS modules ×2</span><span class="amount">~50€</span></div>
+    <div class="bline"><span>LiPo batteries ×4</span><span class="amount">~160€</span></div>
+    <div class="bline"><span>Surveillance cameras ×2</span><span class="amount">~40€</span></div>
+    <div class="bline"><span>3D printing (landing gear, enclosures)</span><span class="amount">~100€</span></div>
+    <div class="bline"><span>Raspberry Pi ×2</span><span class="amount">~70€</span></div>
+    <div class="bline"><span>Software development</span><span class="amount">~500€</span></div>
+    <div class="bline"><span>Field testing &amp; iterations</span><span class="amount">~200€</span></div>
+    <div class="bline"><span>Reward delivery &amp; shipping</span><span class="amount">~2 500€</span></div>
+    <div class="bline"><span>Communication (photos, videos)</span><span class="amount">~300€</span></div>
+    <div class="bline"><span>Contingency buffer</span><span class="amount">~730€</span></div>
+    <div class="bline total"><span>Total</span><span class="amount">5 000€</span></div>
+  </div>
+
+  <div class="foot">
+    <span><a href="https://github.com/simPly-invent/the_watCh3r/blob/master/README/BUDGET.md" target="_blank" rel="noopener">View BUDGET.md on GitHub →</a></span>
+  </div>
+</section>
+
+<!-- ── A04 · RISKS ── -->
+<section class="band bg-black" id="risks">
+  <span class="tag">A04 — Honesty</span>
+  <h2 class="section-head">Risks &amp;<br>challenges.</h2>
+
+  <div class="blocks">
+    <div class="block">
+      <span class="idx">01</span>
+      <div>
+        <h3>Technical risks</h3>
+        <p>Integrating a flight controller, Raspberry Pi, GPS modules, and a custom charging base into a seamless autonomous system requires extensive testing and iteration. I'll move progressively — basic flight first, full autonomy later.</p>
       </div>
     </div>
-
-    <div class="contact-form">
-      <span class="section-label">Get in Touch</span>
-      <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem;">Send a Message</h3>
-      <form id="contact-form">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
-        </div>
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" name="subject" placeholder="What's this about?">
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell us what you're thinking..."></textarea>
-        </div>
-        <button type="submit" class="btn-submit">Send Message →</button>
-      </form>
+    <div class="block">
+      <span class="idx">02</span>
+      <div>
+        <h3>Supply &amp; delivery</h3>
+        <p>Electronic components can face shipping delays or stock issues. I'll order critical parts early and maintain a buffer in the budget for alternatives.</p>
+      </div>
     </div>
-
+    <div class="block">
+      <span class="idx">03</span>
+      <div>
+        <h3>Timeline</h3>
+        <p>I'm a solo developer and student. My 6-month timeline is realistic but may shift. I'll communicate any delay immediately and transparently via monthly updates on GitHub.</p>
+      </div>
+    </div>
+    <div class="block">
+      <span class="idx">04</span>
+      <div>
+        <h3>My commitment</h3>
+        <p>I've already built and flown the first drone. The hardware is real, the architecture is designed, the code is in progress. This campaign funds the execution — not the idea.</p>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo">◈ The Watcher</div>
-    <ul class="footer-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="./tech.html">Technology</a></li>
-      <li><a href="./gallery.html">Gallery</a></li>
-      <li><a href="./contact.html">About</a></li>
-    </ul>
-    <p>Built by <strong><a href="https://github.com/simPly-invent" target="_blank" rel="noopener noreferrer">simPly-invent</a></strong> &nbsp;·&nbsp; Autonomous Drone Project &nbsp;·&nbsp; 2026</p>
+<!-- ── A05 · FAQ ── -->
+<section class="band bg-paper" id="faq">
+  <span class="tag">A05 — FAQ</span>
+  <h2 class="section-head">Questions,<br>answered.</h2>
+
+  <div class="faq">
+    <div class="faq-row">
+      <h3>Will the code be open-source?</h3>
+      <p>Yes — after the campaign, the mission software and charging base code will be published on GitHub under MIT license. No black boxes.</p>
+    </div>
+    <div class="faq-row">
+      <h3>What does backing unlock?</h3>
+      <p>Backing funds the second drone, the autonomous charging base, and the computer vision module. Phase 5 only exists with your support.</p>
+    </div>
+    <div class="faq-row">
+      <h3>What's the timeline?</h3>
+      <p>The Kickstarter campaign is live now. The full two-drone system (Phase 4 complete) is targeted for early 2027, with the CV module to follow if funded.</p>
+    </div>
+    <div class="faq-row">
+      <h3>Is a home surveillance drone even legal?</h3>
+      <p>The Watcher is designed to patrol over your own private property. In the EU, drone flights fall under EASA rules and camera use must respect privacy laws (GDPR) — fully autonomous, out-of-sight flight currently requires specific authorization. I document the regulatory side openly as the project progresses, and backers get honest updates on it like everything else.</p>
+    </div>
+    <div class="faq-row">
+      <h3>Can I follow the build progress?</h3>
+      <p>Absolutely — follow the GitHub org simPly-invent for code updates, and check the Gallery for build log photos.</p>
+    </div>
   </div>
+</section>
+
+<!-- ── A06 · CHANGELOG ── -->
+<section class="band bg-cobalt" id="updates">
+  <span class="tag">A06 — Project Updates</span>
+  <h2 class="section-head">What's happened<br>so far.</h2>
+
+  <div style="max-width: 780px;">
+    <div class="log-entry">
+      <span class="log-date">June 2026</span>
+      <h3>Kickstarter launch + full firmware config</h3>
+      <ul>
+        <li>INAV firmware successfully flashed on SpeedyBee F405 V3</li>
+        <li>ELRS receiver configured and bound to RadioMaster Pocket</li>
+        <li>Multishot ESC protocol configured</li>
+        <li>ARM switch configured on CH5</li>
+        <li>MAVLink UART2 port configured for Raspberry Pi</li>
+        <li>Failsafe set to Land mode (RTH pending GPS arrival)</li>
+        <li>Kickstarter campaign launched</li>
+      </ul>
+    </div>
+    <div class="log-entry">
+      <span class="log-date">Earlier</span>
+      <h3>Hardware assembly &amp; architecture design</h3>
+      <ul>
+        <li>Frame assembled, motors mounted and tested</li>
+        <li>Full system architecture designed and documented</li>
+        <li>GitHub Pages site launched</li>
+        <li>3D model for Raspberry Pi support printed and fitted</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span><a href="https://github.com/simPly-invent/the_watCh3r/blob/master/README/UPDATES.md" target="_blank" rel="noopener">Full history on GitHub →</a></span>
+  </div>
+</section>
+
+<!-- ── A07 · SUPPORTERS ── -->
+<section class="band bg-green" id="supporters">
+  <span class="tag">A07 — Community</span>
+  <h2 class="section-head">Our<br>supporters.</h2>
+  <p class="note" style="margin-top: 0;">These people believed in The Watcher from day one. Your name appears here after backing on Kickstarter.</p>
+
+  <ul id="supporters-list" class="supporters-tags" data-src="../assets/data/supporters.json">
+    <!-- populated from assets/data/supporters.json -->
+  </ul>
+  <p class="note" id="supporters-empty">Be the first to back this project on Kickstarter.</p>
+</section>
+
+<!-- ── A08 · CONTACT ── -->
+<section class="band bg-black" id="contact">
+  <span class="tag">A08 — Get in Touch</span>
+  <h2 class="section-head">Send a<br>message.</h2>
+
+  <form id="contact-form" class="wform">
+    <!-- Honeypot: invisible to humans, bots fill it in — submission is then dropped -->
+    <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px; height: 0; width: 0; opacity: 0;">
+    <div class="field">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+    </div>
+    <div class="field">
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" name="subject" placeholder="What's this about?">
+    </div>
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Tell me what you're thinking…"></textarea>
+    </div>
+    <button type="submit">Send Message →</button>
+  </form>
+</section>
+
+<footer class="wfooter">
+  <nav aria-label="Footer">
+    <a href="../index.html">Home</a>
+    <a href="./tech.html">Tech</a>
+    <a href="./gallery.html">Gallery</a>
+    <a href="./contact.html">About</a>
+  </nav>
+  <span class="credit">© 2026 — Built by <a href="https://github.com/simPly-invent" target="_blank" rel="noopener">simPly-invent</a></span>
+  <a href="mailto:dbenaissi@gmail.com">Email</a>
 </footer>
 
-<script src="../assets/js/main.js"></script>
+<script src="../assets/js/w.js"></script>
 <script src="../assets/js/contact.js"></script>
 </body>
 </html>
